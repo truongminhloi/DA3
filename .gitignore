@@ -1,0 +1,11 @@
+/.vs
+/DA3.Common/obj
+/DA3.Common/bin
+/DA3.DAL/bin
+/DA3.DAL/obj
+/DA3.Infrastructure/obj
+/DA3.Infrastructure/bin
+/DA3.Service/obj
+/DA3.Service/bin
+/DA3/obj
+/DA3/bin
