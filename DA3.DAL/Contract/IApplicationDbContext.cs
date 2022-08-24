@@ -5,8 +5,8 @@ namespace DA3.DAL.Contract
 {
     public interface IApplicationDbContext
     {
-        DbSet<Product> Products { get; set; }
+        DbSet<Account> Accounts { get; set; }
 
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        int SaveChanges();
     }
 }

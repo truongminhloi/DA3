@@ -12,11 +12,11 @@ namespace DA3.DAL
 
         }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        public override int SaveChanges()
         {
-            var result = await base.SaveChangesAsync();
+            var result = base.SaveChanges();
 
             return result;
         }

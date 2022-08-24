@@ -1,17 +1,17 @@
-﻿using DA3.Service.Contract;
-using DA3.Service.Request;
+﻿using DA3.Models;
+using DA3.Service.Contract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DA3.Controler
 {
     public class LoginController : Controller
     {
-        //private readonly ILoginService _loginService;
+        private readonly ILoginService _loginService;
         private readonly ILogger<LoginController> _logger;
 
-        public LoginController(ILogger<LoginController> logger)
+        public LoginController(ILogger<LoginController> logger, ILoginService loginService)
         {
-            //_loginService = loginService;
+            _loginService = loginService;
             _logger = logger;
         }
 
@@ -20,11 +20,16 @@ namespace DA3.Controler
             return View();
         }
 
-        //[HttpPost]
-        //[Route("login")]
-        //public async Task<bool> Login (LoginRequest request)
-        //{
-        //    return await _loginService.Login(request);
-        //}
+        public ActionResult Login(LoginModel loginModel)
+        {
+            var aa = _loginService.Login(loginModel);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Register(LoginModel loginModel)
+        {
+            int a = 1;
+            return View("Home", "Index");
+        }
     }
 }

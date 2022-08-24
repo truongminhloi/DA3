@@ -1,9 +1,11 @@
-﻿using DA3.Service.Request;
+﻿using DA3.Models;
 
 namespace DA3.Service.Contract
 {
     public interface ILoginService
     {
-        Task<bool> Login(LoginRequest request);
+        bool Login(LoginModel loginModel);
+
+        bool Register(LoginModel loginModel);
     }
 }

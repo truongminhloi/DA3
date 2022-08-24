@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Shared\Header.cshtml" />
-    <Content Remove="Views\Shared\_footer.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -25,15 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Cart\" />
     <Folder Include="Views\Product\" />
     <Folder Include="Views\Order\" />
     <Folder Include="Views\Profile\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Shared\_footer.cshtml" />
-    <None Include="Views\Shared\Header.cshtml" />
   </ItemGroup>
 
 </Project>

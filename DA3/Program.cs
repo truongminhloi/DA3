@@ -1,7 +1,17 @@
+using AutoMapper;
+using DA3.DAL;
+using DA3.DAL.Contract;
+using DA3.Service.Contract;
+using DA3.Service.Implement;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<ILoginService, LoginService>();
+builder.Services.AddTransient<ICommonService, CommonService>();
+builder.Services.AddTransient<IMapper, Mapper>();
+builder.Services.AddTransient<IApplicationDbContext, ApplicationDbContext>();
 
 var app = builder.Build();
 
@@ -25,3 +35,4 @@ app.MapControllerRoute(
     pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();
+
