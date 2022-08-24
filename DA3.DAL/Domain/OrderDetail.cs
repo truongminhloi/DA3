@@ -2,7 +2,7 @@
 {
     public class OrderDetail
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public int OrderId { get; set; }
 

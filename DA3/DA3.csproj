@@ -7,7 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Order\**" />
+    <Compile Remove="Views\Profile\**" />
+    <Content Remove="Views\Order\**" />
+    <Content Remove="Views\Profile\**" />
+    <EmbeddedResource Remove="Views\Order\**" />
+    <EmbeddedResource Remove="Views\Profile\**" />
+    <None Remove="Views\Order\**" />
+    <None Remove="Views\Profile\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -16,13 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DA3.Infrastructure\DA3.Infrastructure.csproj" />
     <ProjectReference Include="..\DA3.Service\DA3.Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Product\" />
-    <Folder Include="Views\Order\" />
-    <Folder Include="Views\Profile\" />
   </ItemGroup>
 
 </Project>

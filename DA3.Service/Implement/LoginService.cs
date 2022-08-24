@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using DA3.Common;
 using DA3.DAL.Contract;
 using DA3.DAL.Domain;
 using DA3.Models;
@@ -28,9 +29,9 @@ namespace DA3.Service.Implement
         {
             var pwdHashed = _commonService.GetHashedStringPwd(loginModel.Password);
             var cheked = _dbContext.Accounts.ProjectTo<Account>(_mapper.ConfigurationProvider)
-                .Select(x => x.LoginId == loginModel.PhoneNumber && x.Password == pwdHashed);
+                .Select(x => x.PhoneNumber == loginModel.PhoneNumber && x.Password == pwdHashed && x.Status == Status.ACTIVE)?.FirstOrDefault() ?? false;
 
-            return cheked.FirstOrDefault();
+            return cheked;
         }
 
         public bool Register(LoginModel loginModel)
@@ -38,6 +39,9 @@ namespace DA3.Service.Implement
             try
             {
                 var accountEntity = _mapper.Map<LoginModel, Account>(loginModel);
+                var pwdHashed = _commonService.GetHashedStringPwd(loginModel.Password);
+                accountEntity.Password = pwdHashed;
+                accountEntity.Status = Status.ACTIVE;
 
                 _dbContext.Accounts.AddAsync(accountEntity);
                 _dbContext.SaveChanges();

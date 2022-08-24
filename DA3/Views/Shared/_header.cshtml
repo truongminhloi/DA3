@@ -9,50 +9,57 @@
             <nav class="main-nav">
                 <ul class="menu sf-arrows">
                     <li class="megamenu-container active">
-                        <a href="index.html">Trang chủ</a>
+                        <a href="@Url.Action("Index" , "Home")">Trang chủ</a>
                     </li>
                 </ul>
             </nav>
             <nav class="main-nav">
                 <ul class="menu sf-arrows">
                     <li class="megamenu-container active">
-                        <a href="index.html">Điện thoại</a>
+                        <a href="@Url.Action("Index" , "Product")">Sản phẩm</a>
                     </li>
                 </ul>
             </nav>
             <nav class="main-nav">
                 <ul class="menu sf-arrows">
                     <li class="megamenu-container active">
-                        <a href="index.html">Phụ kiện</a>
+                        <a href="@Url.Action("Index" , "About")">Về chúng tôi</a>
                     </li>
                 </ul>
             </nav>
             <nav class="main-nav">
                 <ul class="menu sf-arrows">
                     <li class="megamenu-container active">
-                        <a href="index.html">Về chúng tôi</a>
+                        <a href="@Url.Action("Index" , "Contact")">Liên lạc với chúng tôi</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="main-nav">
+                <ul class="menu sf-arrows">
+                    <li class="megamenu-container active">
+                        <a href="index.html">Trang Admin</a>
                     </li>
                 </ul>
             </nav>
         </div>
 
         @*<div class="header-right">
-            <div class="header-search">
-                <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
-                <form action="#" method="get">
-                    <div class="header-search-wrapper">
-                        <label for="q" class="sr-only">Search</label>
-                        <input type="search" class="form-control" name="q" id="q" placeholder="Tìm kiếm..." required>
-                    </div><!-- End .header-search-wrapper -->
-                </form>
-            </div><!-- End .header-search -->
+        <div class="header-search">
+        <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
+        <form action="#" method="get">
+        <div class="header-search-wrapper">
+        <label for="q" class="sr-only">Search</label>
+        <input type="search" class="form-control" name="q" id="q" placeholder="Tìm kiếm..." required>
+        </div><!-- End .header-search-wrapper -->
+        </form>
+        </div><!-- End .header-search -->
 
-            <div class="dropdown cart-dropdown">
-                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                    <i class="icon-shopping-cart"></i>
-                    <span class="cart-count">2</span>
-                </a>
-            </div><!-- End .cart-dropdown -->
+        <div class="dropdown cart-dropdown">
+        <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+        <i class="icon-shopping-cart"></i>
+        <span class="cart-count">2</span>
+        </a>
+        </div><!-- End .cart-dropdown -->
         </div><!-- End .header-right -->*@
     </div><!-- End .container -->
 </div><!-- End .header-middle -->

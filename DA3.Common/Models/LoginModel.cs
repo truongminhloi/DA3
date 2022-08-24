@@ -10,6 +10,8 @@ namespace DA3.Models
         [Required]
         public string Password { get; set; }
 
-        public string Fullname { get; set; }
+        public string ReEnterPassword { get; set; }
+
+        public string FullName { get; set; }
     }
 }

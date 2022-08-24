@@ -1,8 +1,10 @@
 using AutoMapper;
 using DA3.DAL;
 using DA3.DAL.Contract;
+using DA3.Infrastructure.Mappings;
 using DA3.Service.Contract;
 using DA3.Service.Implement;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +12,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<ILoginService, LoginService>();
 builder.Services.AddTransient<ICommonService, CommonService>();
-builder.Services.AddTransient<IMapper, Mapper>();
-builder.Services.AddTransient<IApplicationDbContext, ApplicationDbContext>();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer("Server=DESKTOP-UDL539S\\MTL;Database=DA3;Trusted_Connection=True;MultipleActiveResultSets=true;")
+);
+
+var configuration = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile<MappingProfile>();
+});
+
+IMapper mapper = configuration.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
+builder.Services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
 var app = builder.Build();
 
@@ -32,7 +46,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
 

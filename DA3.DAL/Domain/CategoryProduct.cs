@@ -4,7 +4,7 @@ namespace DA3.DAL.Domain
 {
     public class CategoryProduct
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string CategoryName { get; set; }
 
