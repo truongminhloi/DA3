@@ -34,32 +34,26 @@
                     </li>
                 </ul>
             </nav>
-            <nav class="main-nav">
-                <ul class="menu sf-arrows">
-                    <li class="megamenu-container active">
-                        <a href="index.html">Trang Admin</a>
-                    </li>
-                </ul>
-            </nav>
+
+            @* <nav class="main-nav">
+            <ul class="menu sf-arrows">
+            <li class="megamenu-container active">
+            <a href="index.html">Trang Admin</a>
+            </li>
+            </ul>
+            </nav>*@
+            <div class="dropdown cart-dropdown">
+                <a href="@Url.Action("Index" , "Cart")" class="dropdown-toggle">
+                    <i class="icon-shopping-cart"></i>
+                    <span class="cart-count">2</span>
+                </a>
+            </div><!-- End .cart-dropdown -->
+
+            <div class="dropdown cart-dropdown">
+                <a href="@Url.Action("Index" , "Login")" class="dropdown-toggle">
+                    <i class="icon-user"></i>
+                </a>
+            </div><!-- End .cart-dropdown -->
         </div>
-
-        @*<div class="header-right">
-        <div class="header-search">
-        <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
-        <form action="#" method="get">
-        <div class="header-search-wrapper">
-        <label for="q" class="sr-only">Search</label>
-        <input type="search" class="form-control" name="q" id="q" placeholder="Tìm kiếm..." required>
-        </div><!-- End .header-search-wrapper -->
-        </form>
-        </div><!-- End .header-search -->
-
-        <div class="dropdown cart-dropdown">
-        <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-        <i class="icon-shopping-cart"></i>
-        <span class="cart-count">2</span>
-        </a>
-        </div><!-- End .cart-dropdown -->
-        </div><!-- End .header-right -->*@
     </div><!-- End .container -->
 </div><!-- End .header-middle -->

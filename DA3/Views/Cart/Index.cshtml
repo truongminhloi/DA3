@@ -6,32 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Molla - Bootstrap eCommerce Template</title>
-    <meta name="keywords" content="HTML5 Template">
-    <meta name="description" content="Molla - Bootstrap eCommerce Template">
-    <meta name="author" content="p-themes">
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/icons/favicon-16x16.png">
-    <link rel="manifest" href="assets/images/icons/site.html">
-    <link rel="mask-icon" href="assets/images/icons/safari-pinned-tab.svg" color="#666666">
-    <link rel="shortcut icon" href="assets/images/icons/favicon.ico">
-    <meta name="apple-mobile-web-app-title" content="Molla">
-    <meta name="application-name" content="Molla">
-    <meta name="msapplication-TileColor" content="#cc9966">
-    <meta name="msapplication-config" content="assets/images/icons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
-    <!-- Plugins CSS File -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <!-- Main CSS File -->
-    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -55,10 +30,10 @@
                                 <table class="table table-cart table-mobile">
                                     <thead>
                                         <tr>
-                                            <th>Product</th>
-                                            <th>Price</th>
-                                            <th>Quantity</th>
-                                            <th>Total</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành tiền</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -112,42 +87,27 @@
                                         </tr>
                                     </tbody>
                                 </table><!-- End .table table-wishlist -->
-
-                                <div class="cart-bottom">
-                                    <div class="cart-discount">
-                                        <form action="#">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" required placeholder="coupon code">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
-                                                </div><!-- .End .input-group-append -->
-                                            </div><!-- End .input-group -->
-                                        </form>
-                                    </div><!-- End .cart-discount -->
-
-                                    <a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="icon-refresh"></i></a>
-                                </div><!-- End .cart-bottom -->
                             </div><!-- End .col-lg-9 -->
                             <aside class="col-lg-3">
                                 <div class="summary summary-cart">
-                                    <h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+                                    <h3 class="summary-title">Đơn hàng</h3><!-- End .summary-title -->
 
                                     <table class="table table-summary">
                                         <tbody>
                                             <tr class="summary-subtotal">
-                                                <td>Subtotal:</td>
+                                                <td>Tiền sản phẩm:</td>
                                                 <td>$160.00</td>
                                             </tr><!-- End .summary-subtotal -->
                                             <tr class="summary-shipping">
-                                                <td>Shipping:</td>
+                                                <td>Phí giao hàng:</td>
                                                 <td>&nbsp;</td>
                                             </tr>
 
                                             <tr class="summary-shipping-row">
                                                 <td>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
-                                                        <label class="custom-control-label" for="free-shipping">Free Shipping</label>
+                                                        <input type="radio" id="free-shipping" name="shipping" class="custom-control-input" checked>
+                                                        <label class="custom-control-label" for="free-shipping">Cơ bản</label>
                                                     </div><!-- End .custom-control -->
                                                 </td>
                                                 <td>$0.00</td>
@@ -157,7 +117,7 @@
                                                 <td>
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
-                                                        <label class="custom-control-label" for="standart-shipping">Standart:</label>
+                                                        <label class="custom-control-label" for="standart-shipping">Nhanh:</label>
                                                     </div><!-- End .custom-control -->
                                                 </td>
                                                 <td>$10.00</td>
@@ -167,28 +127,28 @@
                                                 <td>
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
-                                                        <label class="custom-control-label" for="express-shipping">Express:</label>
+                                                        <label class="custom-control-label" for="express-shipping">Siêu tốc:</label>
                                                     </div><!-- End .custom-control -->
                                                 </td>
                                                 <td>$20.00</td>
                                             </tr><!-- End .summary-shipping-row -->
 
                                             <tr class="summary-shipping-estimate">
-                                                <td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
+                                                <td>111 Nguyển Văn Vừ - Q5 -TP.HCM<br> <a href="dashboard.html">Thay đổi địa chỉ</a></td>
                                                 <td>&nbsp;</td>
                                             </tr><!-- End .summary-shipping-estimate -->
 
                                             <tr class="summary-total">
-                                                <td>Total:</td>
+                                                <td>Thành tiền:</td>
                                                 <td>$160.00</td>
                                             </tr><!-- End .summary-total -->
                                         </tbody>
                                     </table><!-- End .table table-summary -->
 
-                                    <a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+                                    <a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">Đặt hàng</a>
                                 </div><!-- End .summary -->
 
-                                <a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
+                                <a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>Tiếp tục mua hàng</span><i class="icon-refresh"></i></a>
                             </aside><!-- End .col-lg-3 -->
                         </div><!-- End .row -->
                     </div><!-- End .container -->
@@ -196,18 +156,5 @@
             </div><!-- End .page-content -->
         </main><!-- End .main -->
     </div>
-    <!-- Plugins JS File -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jquery.hoverIntent.min.js"></script>
-    <script src="assets/js/jquery.waypoints.min.js"></script>
-    <script src="assets/js/superfish.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/bootstrap-input-spinner.js"></script>
-    <!-- Main JS File -->
-    <script src="assets/js/main.js"></script>
 </body>
-
-
-<!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
 </html>

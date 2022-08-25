@@ -14,7 +14,7 @@ builder.Services.AddTransient<ILoginService, LoginService>();
 builder.Services.AddTransient<ICommonService, CommonService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer("Server=DESKTOP-UDL539S\\MTL;Database=DA3;Trusted_Connection=True;MultipleActiveResultSets=true;")
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
 var configuration = new MapperConfiguration(cfg =>
