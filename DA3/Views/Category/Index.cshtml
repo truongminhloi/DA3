@@ -26,13 +26,19 @@
             <div class="page-content">
                 <div class="cart">
                     <div class="container">
+                        <div class="form-footer">
+                            <button type="submit" onclick="location.href='@Url.Action("Create", "Category")'" class="btn btn-outline-primary-2">
+                                <span>Thêm mới</span>
+                                <i class="icon-long-arrow-right"></i>
+                            </button>
+                        </div><!-- End .form-footer -->
                         <div class="row">
                             <div class="col-lg-9">
                                 <table class="table table-cart table-mobile">
                                     <thead>
                                         <tr>
-                                            <th>Tên loại sản phẩm</th>
-                                            <th>Mô tả</th>
+                                            <th><b>Tên loại sản phẩm</b></th>
+                                            <th><b>Mô tả</b></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -43,7 +49,10 @@
                                             <tr>
                                                 <td class="price-col">@item?.Name</td>
                                                 <td class="price-col">@item?.Describe</td>
-                                                <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+                                                <td class="remove-col">
+                                                    <button class="btn-remove" onclick="location.href='@Url.Action("Edit", "Category", new {categoryId = @item.Id})'"><i class="icon-edit"></i></button>
+                                                    <button class="btn-remove" onclick="location.href='@Url.Action("Remove", "Category", new {categoryId = @item.Id})'"><i class="icon-close"></i></button>
+                                                </td>
                                             </tr>
                                         }
                                     </tbody>

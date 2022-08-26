@@ -15,13 +15,43 @@ namespace DA3.Controler
 
         public IActionResult Index()
         {
+            var allCategories = _categoryService.AllCategories();
+            var viewModel = new CategoryViewModel
+            {
+                Categories = allCategories
+            };
+            return View(viewModel);
+        }
+
+        public IActionResult Create()
+        {
             return View();
         }
 
-        public IActionResult Create(CategoryModel categoryModel)
+        public IActionResult Edit(string categoryId)
+        {
+            var categoryModel = _categoryService.GetCategoryById(categoryId);
+            return View(categoryModel);
+        }
+
+        public IActionResult HandelCreate(CategoryModel categoryModel)
         {
             categoryModel.Status = Status.ACTIVE;
             _categoryService.Create(categoryModel);
+            return RedirectToAction("Index", "Category");
+        }
+
+        public IActionResult HandelEdit(CategoryModel categoryModel)
+        {
+            _categoryService.Update(categoryModel);
+            return RedirectToAction("Index", "Category");
+        }
+
+        public IActionResult Remove(string categoryId)
+        {
+            var categoryModel = _categoryService.GetCategoryById(categoryId);
+            categoryModel.Status = Status.DELETE;
+            _categoryService.Update(categoryModel);
             return RedirectToAction("Index", "Category");
         }
     }

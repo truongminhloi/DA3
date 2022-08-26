@@ -6,6 +6,10 @@ namespace DA3.Service.Contract
     {
         List<CategoryModel> AllCategories();
 
+        string Update(CategoryModel categoryModel);
+
         string Create(CategoryModel cartModel);
+
+        CategoryModel GetCategoryById(string categoryId);
     }
 }

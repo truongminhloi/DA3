@@ -8,6 +8,6 @@ namespace DA3.Models
 
         public decimal PriceShipExpress { get; set; }
 
-        public CartModel CartModel { get; set; }
+        public CartModel CartModel { get; set; } = new CartModel();
     }
 }

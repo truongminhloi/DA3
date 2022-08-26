@@ -24,10 +24,13 @@
             <div class="page-content">
                 <div class="checkout">
                     <div class="container">
-                        <form action="@Url.Action("HandelCreate", "Category")">
+                        <form action="@Url.Action("HandelEdit", "Category")">
                             <div class="row">
                                 <div class="col-lg-9">
                                     <h2 class="checkout-title">Thông tin loại sản phẩm</h2><!-- End .checkout-title -->
+                                    <label>Id</label>
+                                    @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @readonly = "readonly"})
+
                                     <label>Tên loại sản phẩm</label>
                                     @Html.TextBoxFor(m => m.Name, new { @class = "form-control"})
 
