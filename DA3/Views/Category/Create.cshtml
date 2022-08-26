@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Thêm loại sản phẩm";
+    Layout = "_Layout";
+}
+@model CategoryModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <main class="main">
+            <div class="page-header text-center" style="background-image: url('../assets/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">Thêm loại sản phẩm</h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+                <div class="checkout">
+                    <div class="container">
+                        <form action="@Url.Action("Create", "Category")">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <h2 class="checkout-title">Thông tin loại sản phẩm</h2><!-- End .checkout-title -->
+                                    <label>Tên loại sản phẩm</label>
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control"})
+
+                                    <label>Mô tả</label>
+                                    @Html.TextAreaFor(m => m.Describe, new { @class = "form-control"})
+                                </div><!-- End .col-lg-9 -->
+                            </div><!-- End .row -->
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-outline-primary-2">
+                                    <span>Lưu thông tin</span>
+                                    <i class="icon-long-arrow-right"></i>
+                                </button>
+                            </div><!-- End .form-footer -->
+                        </form>
+                    </div><!-- End .container -->
+                </div><!-- End .checkout -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+    </div><!-- End .modal -->
+</body>
+</html>

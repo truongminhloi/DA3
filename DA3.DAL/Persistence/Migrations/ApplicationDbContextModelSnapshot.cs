@@ -106,7 +106,7 @@ namespace DA3.DAL.Persistence.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("DA3.DAL.Domain.CartDetail", b =>
+            modelBuilder.Entity("DA3.DAL.Domain.CartDetails", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -145,7 +145,41 @@ namespace DA3.DAL.Persistence.Migrations
 
                     b.HasIndex("CartId1");
 
-                    b.ToTable("CartDetail");
+                    b.ToTable("CartDetails");
+                });
+
+            modelBuilder.Entity("DA3.DAL.Domain.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Describe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("DA3.DAL.Domain.Product", b =>
@@ -197,7 +231,7 @@ namespace DA3.DAL.Persistence.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("DA3.DAL.Domain.CartDetail", b =>
+            modelBuilder.Entity("DA3.DAL.Domain.CartDetails", b =>
                 {
                     b.HasOne("DA3.DAL.Domain.Cart", null)
                         .WithMany("CartDetails")

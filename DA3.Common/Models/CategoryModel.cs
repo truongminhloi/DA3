@@ -1,13 +1,12 @@
-﻿using DA3.Common;
+using DA3.Common;
 
-namespace DA3.DAL.Domain
+namespace DA3.Models
 {
-    public class Category : BaseDomain
+    public class CategoryModel : BaseModel
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }
-
 
         public string Describe { get; set; }
 

@@ -20,10 +20,11 @@ namespace DA3.DAL
 
         public DbSet<Product> Products { get; set; }
 
+        public DbSet<Category> Categories { get; set; }
+
         public override int SaveChanges()
         {
             var result = base.SaveChanges();
-
             return result;
         }
 

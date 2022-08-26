@@ -13,6 +13,8 @@ namespace DA3.DAL.Contract
 
         DbSet<Product> Products { get; set; }
 
+        DbSet<Category> Categories { get; set; }
+
         int SaveChanges();
     }
 }

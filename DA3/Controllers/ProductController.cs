@@ -21,5 +21,10 @@ namespace DA3.Controler
             };
             return View(productViewModel);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }

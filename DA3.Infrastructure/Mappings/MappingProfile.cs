@@ -22,6 +22,10 @@ namespace DA3.Infrastructure.Mappings
 
             CreateMap<CartModel, Cart>();
             CreateMap<CartDetailModel, CartDetails>();
+
+
+            CreateMap<Category, CategoryModel>();
+            CreateMap<CategoryModel, Category>();
         }
     }
 }
