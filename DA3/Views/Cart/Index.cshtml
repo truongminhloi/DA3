@@ -2,6 +2,7 @@
     ViewData["Title"] = "Về chúng tôi";
     Layout = "_Layout";
 }
+@model CartViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,36 +54,13 @@
                                                     </h3><!-- End .product-title -->
                                                 </div><!-- End .product -->
                                             </td>
-                                            <td class="price-col">$84.00</td>
+                                            <td class="price-col">@Model?.Price</td>
                                             <td class="quantity-col">
                                                 <div class="cart-product-quantity">
-                                                    <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                                    <input type="number" class="form-control" value="@Model?.Quantity" min="1" max="10" step="1" data-decimals="0" required>
                                                 </div><!-- End .cart-product-quantity -->
                                             </td>
-                                            <td class="total-col">$84.00</td>
-                                            <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="product-col">
-                                                <div class="product">
-                                                    <figure class="product-media">
-                                                        <a href="#">
-                                                            <img src="assets/images/products/table/product-2.jpg" alt="Product image">
-                                                        </a>
-                                                    </figure>
-
-                                                    <h3 class="product-title">
-                                                        <a href="#">Blue utility pinafore denim dress</a>
-                                                    </h3><!-- End .product-title -->
-                                                </div><!-- End .product -->
-                                            </td>
-                                            <td class="price-col">$76.00</td>
-                                            <td class="quantity-col">
-                                                <div class="cart-product-quantity">
-                                                    <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                                                </div><!-- End .cart-product-quantity -->
-                                            </td>
-                                            <td class="total-col">$76.00</td>
+                                            <td class="total-col">@Model?.PricePerQuantity</td>
                                             <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
                                         </tr>
                                     </tbody>
@@ -96,7 +74,7 @@
                                         <tbody>
                                             <tr class="summary-subtotal">
                                                 <td>Tiền sản phẩm:</td>
-                                                <td>$160.00</td>
+                                                <td>@Model?.PricePerQuantity</td>
                                             </tr><!-- End .summary-subtotal -->
                                             <tr class="summary-shipping">
                                                 <td>Phí giao hàng:</td>
@@ -110,7 +88,7 @@
                                                         <label class="custom-control-label" for="free-shipping">Cơ bản</label>
                                                     </div><!-- End .custom-control -->
                                                 </td>
-                                                <td>$0.00</td>
+                                                <td>@Model?.PriceShipFree</td>
                                             </tr><!-- End .summary-shipping-row -->
 
                                             <tr class="summary-shipping-row">
@@ -120,7 +98,7 @@
                                                         <label class="custom-control-label" for="standart-shipping">Nhanh:</label>
                                                     </div><!-- End .custom-control -->
                                                 </td>
-                                                <td>$10.00</td>
+                                                <td>@Model?.PriceShipStandard</td>
                                             </tr><!-- End .summary-shipping-row -->
 
                                             <tr class="summary-shipping-row">
@@ -130,25 +108,25 @@
                                                         <label class="custom-control-label" for="express-shipping">Siêu tốc:</label>
                                                     </div><!-- End .custom-control -->
                                                 </td>
-                                                <td>$20.00</td>
+                                                <td>@Model?.PriceShipExpress</td>
                                             </tr><!-- End .summary-shipping-row -->
 
                                             <tr class="summary-shipping-estimate">
-                                                <td>111 Nguyển Văn Vừ - Q5 -TP.HCM<br> <a href="dashboard.html">Thay đổi địa chỉ</a></td>
+                                                <td>@Model?.Address<br> <a href="dashboard.html">Thay đổi địa chỉ</a></td>
                                                 <td>&nbsp;</td>
                                             </tr><!-- End .summary-shipping-estimate -->
 
                                             <tr class="summary-total">
                                                 <td>Thành tiền:</td>
-                                                <td>$160.00</td>
+                                                <td>@Model?.TotalPrice</td>
                                             </tr><!-- End .summary-total -->
                                         </tbody>
                                     </table><!-- End .table table-summary -->
 
-                                    <a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">Đặt hàng</a>
+                                    <a href="@Url.Action("Index" , "Checkout")" class="btn btn-outline-primary-2 btn-order btn-block">Đặt hàng</a>
                                 </div><!-- End .summary -->
 
-                                <a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>Tiếp tục mua hàng</span><i class="icon-refresh"></i></a>
+                                <a href="@Url.Action("Index" , "Product")" class="btn btn-outline-dark-2 btn-block mb-3"><span>Tiếp tục mua hàng</span><i class="icon-refresh"></i></a>
                             </aside><!-- End .col-lg-3 -->
                         </div><!-- End .row -->
                     </div><!-- End .container -->

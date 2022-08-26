@@ -1,16 +1,16 @@
-﻿using DA3.Common;
+using DA3.Common;
 
-namespace DA3.DAL.Domain
+namespace DA3.Models
 {
-    public class Cart
+    public class CartModel
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         public string UserId { get; set; }
 
         public string ProductId { get; set; }
 
-        public decimal Amount { get; set; }
+        public int Amount { get; set; }
 
         public double PricePerProduct { get; set; }
 

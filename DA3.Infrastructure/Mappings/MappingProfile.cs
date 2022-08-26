@@ -14,7 +14,7 @@ namespace DA3.Infrastructure.Mappings
         private void ProductMapping()
         {
             CreateMap<LoginModel, Account>();
-            CreateMap<Account, Account>();
+            CreateMap<Product, ProductModel>();
         }
     }
 }
