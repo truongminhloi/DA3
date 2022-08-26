@@ -9,7 +9,10 @@ namespace DA3.DAL.Contract
 
         DbSet<Cart> Carts { get; set; }
 
+        DbSet<CartDetails> CartDetails { get; set; }
+
         DbSet<Product> Products { get; set; }
+
         int SaveChanges();
     }
 }

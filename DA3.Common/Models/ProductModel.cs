@@ -2,13 +2,13 @@ using DA3.Common;
 
 namespace DA3.Models
 {
-    public class ProductModel
+    public class ProductModel : BaseModel
     {
         public Guid Id { get; set; }
 
-        public string ProductName { get; set; }
+        public string Name { get; set; }
 
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
         public string Url { get; set; }
 

@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DA3.Models
 {
-    public class LoginModel
+    public class LoginModel : BaseModel
     {
         [Required]
         public string PhoneNumber { get; set; }

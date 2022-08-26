@@ -1,15 +1,15 @@
 ﻿namespace DA3.DAL.Domain
 {
-    public class ProductDetails
+    public class ProductDetail : BaseDomain
     {
         public Guid Id { get; set; }
 
-        public int ProductId { get; set; }
+        public string ProductId { get; set; }
 
         public string Screen { get; set; }
 
         public string System { get; set; }
-        
+
         public string FrontCamera { get; set; }
 
         public string RearCamera { get; set; }

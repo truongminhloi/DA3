@@ -4,8 +4,12 @@ namespace DA3.Service.Contract
 {
     public interface ICartService
     {
-        bool Create(CartModel cartModel);
+        string Create(CartModel cartModel);
+
+        string CreateCartDetail(CartDetailModel cartModel);
 
         bool Delete(string Id);
+
+        CartModel GetcartById(string userId);
     }
 }

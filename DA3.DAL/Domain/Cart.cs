@@ -1,20 +1,19 @@
 ﻿using DA3.Common;
+using DA3.Common.Enums;
 
 namespace DA3.DAL.Domain
 {
-    public class Cart
+    public class Cart : BaseDomain
     {
         public Guid Id { get; set; }
 
         public string UserId { get; set; }
 
-        public string ProductId { get; set; }
+        public List<CartDetails> CartDetails { get; set; }
 
-        public decimal Amount { get; set; }
+        public ShippingMethod ShippingMethod { get; set; }
 
-        public double PricePerProduct { get; set; }
-
-        public double PricePerAllProducts { get; set; }
+        public string Address { get; set; }
 
         public Status Status { get; set; }
     }

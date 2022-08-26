@@ -2,6 +2,12 @@ namespace DA3.Models
 {
     public class CartViewModel
     {
-        public List<ProductModel> Products { get; set; }
+        public decimal PriceShipFree { get; set; }
+
+        public decimal PriceShipStandard { get; set; }
+
+        public decimal PriceShipExpress { get; set; }
+
+        public CartModel CartModel { get; set; }
     }
 }

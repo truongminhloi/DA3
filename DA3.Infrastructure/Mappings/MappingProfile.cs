@@ -14,7 +14,14 @@ namespace DA3.Infrastructure.Mappings
         private void ProductMapping()
         {
             CreateMap<LoginModel, Account>();
+
             CreateMap<Product, ProductModel>();
+
+            CreateMap<Cart, CartModel>();
+            CreateMap<CartDetails, CartDetailModel>();
+
+            CreateMap<CartModel, Cart>();
+            CreateMap<CartDetailModel, CartDetails>();
         }
     }
 }

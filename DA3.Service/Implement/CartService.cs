@@ -24,14 +24,14 @@ namespace DA3.Service.Implement
             _logger = logger;
         }
 
-        public bool Create(CartModel cartModel)
+        public string Create(CartModel cartModel)
         {
             try
             {
                 var cartEntity = _mapper.Map<CartModel, Cart>(cartModel);
                 _dbContext.Carts.AddAsync(cartEntity);
                 _dbContext.SaveChanges();
-                return true;
+                return cartEntity.Id.ToString();
             }
             catch (Exception ex)
             {
@@ -39,6 +39,20 @@ namespace DA3.Service.Implement
             }
         }
 
+        public string CreateCartDetail(CartDetailModel cartDetailModel)
+        {
+            try
+            {
+                var cartDetailEntity = _mapper.Map<CartDetailModel, CartDetails>(cartDetailModel);
+                _dbContext.CartDetails.AddAsync(cartDetailEntity);
+                _dbContext.SaveChanges();
+                return cartDetailEntity.Id.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public bool Delete(string Id)
         {
@@ -54,6 +68,22 @@ namespace DA3.Service.Implement
             {
                 _logger.LogError(ex.Message);
                 return false;
+            }
+        }
+
+        public CartModel GetcartById(string userId)
+        {
+            try
+            {
+                var cartEntity = _dbContext.Carts.FirstOrDefault(x => x.UserId == userId) ?? new Cart();
+                var cart = _mapper.Map<Cart, CartModel>(cartEntity);
+
+                return cart;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

@@ -2,11 +2,11 @@
 
 namespace DA3.DAL.Domain
 {
-    public class Category
+    public class Category : BaseDomain
     {
         public Guid Id { get; set; }
 
-        public string CategoryName { get; set; }
+        public string Name { get; set; }
 
         public Status Status { get; set; }
     }

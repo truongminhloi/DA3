@@ -16,6 +16,8 @@ namespace DA3.DAL
 
         public DbSet<Cart> Carts { get; set; }
 
+        public DbSet<CartDetails> CartDetails { get; set; }
+
         public DbSet<Product> Products { get; set; }
 
         public override int SaveChanges()

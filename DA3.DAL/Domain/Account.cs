@@ -2,7 +2,7 @@
 
 namespace DA3.DAL.Domain
 {
-    public class Account
+    public class Account : BaseDomain
     {
         public Guid Id { get; set; }
 
@@ -10,7 +10,7 @@ namespace DA3.DAL.Domain
 
         public DateTime? DayOfBirth { get; set; }
 
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         public string? Address { get; set; }
 
@@ -18,7 +18,7 @@ namespace DA3.DAL.Domain
 
         public string? Gender { get; set; }
 
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         public Status Status { get; set; }
     }
