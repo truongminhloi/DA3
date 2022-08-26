@@ -20,21 +20,28 @@ namespace DA3.Controler
 
         public IActionResult Index()
         {
-            //var productModel = _productService.GetProductById();
-            return View();
+            var carModel = _cartService.GetcartByUserId("DA677218-E289-48D6-B686-782D7553DAC8");
+            var cartViewModel = new CartViewModel
+            {
+                PriceShipFree = 20000,
+                PriceShipStandard = 40000,
+                PriceShipExpress = 60000,
+                CartModel = carModel
+            };
+            return View(cartViewModel);
         }
 
         public IActionResult Create(string productId)
         {
             var productModel = _productService.GetProductById(productId);
-            var carModel = _cartService.GetcartById("1");
+            var carModel = _cartService.GetcartByUserId("1");
             if (GuidHelper.IsGuildNullOrEmpty(new Guid(carModel?.Id)))
             {
                 var cartModel = new CartModel
                 {
-                    UserId = "",
+                    UserId = "DA677218-E289-48D6-B686-782D7553DAC8",
                     PricePerAllProducts = 1,
-                    Address = "",
+                    Address = "111 AA",
                     TotalPrice = 1000,
                     ShippingMethod = ShippingMethod.Freeshipping,
                     Status = Status.ACTIVE

@@ -7,13 +7,16 @@ namespace DA3.Controler
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly ISession _session;
+        public ProductController(IProductService productService, ISession session)
         {
             _productService = productService;
+            _session = session;
         }
 
         public IActionResult Index()
         {
+            var userId = _session.GetString("UserId");
             var allProducts = _productService.AllProducts();
             var productViewModel = new ProductViewModel
             {

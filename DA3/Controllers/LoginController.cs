@@ -22,7 +22,23 @@ namespace DA3.Controler
 
         public ActionResult Login(LoginModel loginModel)
         {
-            var aa = _loginService.Login(loginModel);
+            var result = _loginService.Login(loginModel);
+            if (result == true)
+            {
+                var account = _loginService.GetAccountByPhoneNumber(loginModel.PhoneNumber);
+                HttpContext.Session.SetString("UserId", account?.Id);
+                HttpContext.Session.SetString("PhoneNumber", account?.PhoneNumber);
+                HttpContext.Session.SetString("FullName", account?.FullName);
+
+                //var profileData = new UserProfileSessionData
+                //{
+                //    UserId = account.Id,
+                //    PhoneNumber = account.PhoneNumber,
+                //    Address = account.Address,
+                //    FullName = account.FullName
+                //};
+                
+            }
             return RedirectToAction("Index", "Home");
         }
 

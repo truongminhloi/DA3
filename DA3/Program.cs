@@ -15,6 +15,10 @@ builder.Services.AddTransient<ICommonService, CommonService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<ICartService, CartService>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
+builder.Services.AddScoped(sp => sp.GetService<IHttpContextAccessor>().HttpContext.Session);
+
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -44,6 +48,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 

@@ -5,6 +5,7 @@ using DA3.DAL.Contract;
 using DA3.DAL.Domain;
 using DA3.Models;
 using DA3.Service.Contract;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace DA3.Service.Implement
@@ -28,8 +29,7 @@ namespace DA3.Service.Implement
         public bool Login(LoginModel loginModel)
         {
             var pwdHashed = _commonService.GetHashedStringPwd(loginModel.Password);
-            var cheked = _dbContext.Accounts.ProjectTo<Account>(_mapper.ConfigurationProvider)
-                .Select(x => x.PhoneNumber == loginModel.PhoneNumber && x.Password == pwdHashed && x.Status == Status.ACTIVE)?.FirstOrDefault() ?? false;
+            var cheked = _dbContext.Accounts.Select(x => x.PhoneNumber == loginModel.PhoneNumber && x.Password == pwdHashed && x.Status == Status.ACTIVE)?.FirstOrDefault() ?? false;
 
             return cheked;
         }
@@ -51,6 +51,21 @@ namespace DA3.Service.Implement
             {
                 _logger.LogError(ex.Message);
                 return false;
+            }
+        }
+        public AccountModel GetAccountByPhoneNumber(string phoneNumber)
+        {
+            try
+            {
+                var accountEntity = _dbContext.Accounts.AsNoTracking().FirstOrDefault(x => x.PhoneNumber == phoneNumber) ?? new Account();
+                var account = _mapper.Map<Account, AccountModel>(accountEntity);
+
+                return account;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

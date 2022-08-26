@@ -43,7 +43,7 @@
 
                                         <tbody>
 
-                                            @foreach (var cartDetail in @Model?.CartModel.CartDetails)
+                                            @foreach (var cartDetail in @Model.CartModel.CartDetails)
                                             {
                                                 <tr>
                                                     <td class="product-col">
@@ -59,13 +59,13 @@
                                                             </h3><!-- End .product-title -->
                                                         </div><!-- End .product -->
                                                     </td>
-                                                    <td class="price-col">@cartDetail?.PriceProduct</td>
+                                                    <td class="price-col">@cartDetail.PriceProduct</td>
                                                     <td class="quantity-col">
                                                         <div class="cart-product-quantity">
-                                                            <input type="number" class="form-control" value="@cartDetail?.Quantity" min="1" max="10" step="1" data-decimals="0" required>
+                                                            <input type="number" class="form-control" value="@cartDetail.Quantity" min="1" max="10" step="1" data-decimals="0" required>
                                                         </div><!-- End .cart-product-quantity -->
                                                     </td>
-                                                    <td class="total-col">@cartDetail?.PricePerProdcut</td>
+                                                    <td class="total-col">@cartDetail.PricePerProdcut</td>
                                                     <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
                                                 </tr>
                                             }
@@ -82,7 +82,7 @@
                                             <tbody>
                                                 <tr class="summary-subtotal">
                                                     <td>Tiền sản phẩm:</td>
-                                                    <td>@Model?.CartModel.PricePerAllProducts</td>
+                                                    <td>@Model.CartModel.PricePerAllProducts</td>
                                                 </tr><!-- End .summary-subtotal -->
                                                 <tr class="summary-shipping">
                                                     <td>Phí giao hàng:</td>
@@ -96,7 +96,7 @@
                                                             <label class="custom-control-label" for="free-shipping">Cơ bản</label>
                                                         </div><!-- End .custom-control -->
                                                     </td>
-                                                    <td>@Model?.PriceShipFree</td>
+                                                    <td>@Model.PriceShipFree</td>
                                                 </tr><!-- End .summary-shipping-row -->
 
                                                 <tr class="summary-shipping-row">
@@ -106,7 +106,7 @@
                                                             <label class="custom-control-label" for="standart-shipping">Nhanh:</label>
                                                         </div><!-- End .custom-control -->
                                                     </td>
-                                                    <td>@Model?.PriceShipStandard</td>
+                                                    <td>@Model.PriceShipStandard</td>
                                                 </tr><!-- End .summary-shipping-row -->
 
                                                 <tr class="summary-shipping-row">
@@ -116,17 +116,17 @@
                                                             <label class="custom-control-label" for="express-shipping">Siêu tốc:</label>
                                                         </div><!-- End .custom-control -->
                                                     </td>
-                                                    <td>@Model?.PriceShipExpress</td>
+                                                    <td>@Model.PriceShipExpress</td>
                                                 </tr><!-- End .summary-shipping-row -->
 
                                                 <tr class="summary-shipping-estimate">
-                                                    <td>@Model?.CartModel.Address<br> <a href="dashboard.html">Thay đổi địa chỉ</a></td>
+                                                    <td>@Model.CartModel.Address<br> <a href="dashboard.html">Thay đổi địa chỉ</a></td>
                                                     <td>&nbsp;</td>
                                                 </tr><!-- End .summary-shipping-estimate -->
 
                                                 <tr class="summary-total">
                                                     <td>Thành tiền:</td>
-                                                    <td>@Model?.CartModel.TotalPrice</td>
+                                                    <td>@Model.CartModel.TotalPrice</td>
                                                 </tr><!-- End .summary-total -->
                                             </tbody>
                                         </table><!-- End .table table-summary -->

@@ -24,6 +24,22 @@ namespace DA3.Service.Implement
             _logger = logger;
         }
 
+        public List<CartModel> AllCarts()
+        {
+            try
+            {
+                var allCartEntitys = _dbContext.Carts.ToList() ?? new List<Cart>();
+                var allCarts = _mapper.Map<List<Cart>, List<CartModel>>(allCartEntitys);
+
+                return allCarts;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public string Create(CartModel cartModel)
         {
             try
@@ -71,7 +87,7 @@ namespace DA3.Service.Implement
             }
         }
 
-        public CartModel GetcartById(string userId)
+        public CartModel GetcartByUserId(string userId)
         {
             try
             {
