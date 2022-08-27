@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Quản lỳ người dùng";
+    Layout = "_Layout";
+}
+@model AccountViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <main class="main">
+            <div class="page-content">
+                <div class="cart">
+                    <div class="container">
+                        <div class="form-footer">
+                            <button type="submit" onclick="location.href='@Url.Action("Create", "Account")'" class="btn btn-outline-primary-2">
+                                <span>Thêm mới</span>
+                                <i class="icon-long-arrow-right"></i>
+                            </button>
+                        </div><!-- End .form-footer -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <table class="table table-cart table-mobile">
+                                    <thead>
+                                        <tr>
+                                            @*<th><b>ID</b></th>*@
+                                            <th><b>Họ & tên</b></th>
+                                            <th><b>Số điện thoại</b></th>
+                                            <th><b>Ngày sinh</b></th>
+                                            <th><b>Địa chỉ</b></th>
+                                            <th><b>Email</b></th>
+                                            <th><b>Giới tính</b></th>
+                                            <th><b>Trạng thái</b></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in @Model?.Accounts)
+                                        {
+                                            <tr>
+                                                @*<td class="price-col">@item?.Id</td>*@
+                                                <td class="price-col">@item?.FullName</td>
+                                                <td class="price-col">@item?.PhoneNumber</td>
+                                                <td class="price-col">@item?.DayOfBirth</td>
+                                                <td class="price-col">@item?.Address</td>
+                                                <td class="price-col">@item?.Email</td>
+                                                <td class="price-col">@item?.Gender</td>
+                                                <td class="price-col">@item?.Status</td>
+                                                <td class="remove-col">
+                                                    <button class="btn-remove" onclick="location.href='@Url.Action("Edit", "Account", new {accountId = @item.Id})'"><i class="icon-edit"></i></button>
+                                                    <button class="btn-remove" onclick="location.href='@Url.Action("Remove", "Account", new {accountId = @item.Id})'"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table><!-- End .table table-wishlist -->
+                            </div><!-- End .col-lg-9 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .container -->
+                </div><!-- End .cart -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+    </div>
+</body>
+</html>

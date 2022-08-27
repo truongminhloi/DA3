@@ -13,7 +13,7 @@ namespace DA3.Controler
             _categoryService = categoryService;
         }
 
-        public IActionResult Index()
+        public IActionResult Admin()
         {
             var allCategories = _categoryService.AllCategories();
             var viewModel = new CategoryViewModel

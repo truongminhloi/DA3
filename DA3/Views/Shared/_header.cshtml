@@ -1,67 +1,114 @@
 ﻿@using Microsoft.AspNetCore.Http;
-<div class="header-middle sticky-header">
-    <div class="container">
-        <div class="header-left">
+<div class="page-wrapper">
+    <header class="header">
+        <div class="header-top">
+            <div class="container-fluid">
+                <div class="header-left">
+                </div><!-- End .header-left -->
 
-            <a href="index.html" class="logo">
-                <img src="~/assets/images/logo.png" alt="Molla Logo" width="105" height="25">
-            </a>
+                <div class="header-right">
+                    <div class="header-dropdown">
+                        <a href="#">Admin</a>
+                        <div class="header-menu">
+                            <ul>
+                                <li><a href="#">Quản lý sản phẩm</a></li>
+                                <li><a href="@Url.Action("Admin" , "category")">Quản lý loại sản phẩm</a></li>
+                                <li><a href="@Url.Action("Admin" , "Account")">Quản lý người dùng</a></li>
+                                <li><a href="#">Quản lý đơn hàng</a></li>
+                                <li><a href="@Url.Action("Admin" , "Stored")">Thông tin cửa hàng</a></li>
+                                <li><a href="#">Báo cáo thống kê</a></li>
+                            </ul>
+                        </div><!-- End .header-menu -->
+                    </div><!-- End .header-dropdown -->
+                    <ul class="top-menu">
+                        <li>
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li>
+                                    @if (!string.IsNullOrEmpty(@Context.Session.GetString("FullName")))
+                                    {
+                                        <a href="@Url.Action("Index" , "Login")">
+                                            <i class="icon-user"></i>
+                                            Xin chào, @Context.Session.GetString("FullName")
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Index" , "Login")">
+                                            <i class="icon-user"></i>
+                                            Đăng nhập / Đăng ký
+                                        </a>
+                                    }
+                                </li>
+                            </ul>
+                        </li>
+                    </ul><!-- End .top-menu -->
+                </div><!-- End .header-right -->
+            </div><!-- End .container-fluid -->
+        </div><!-- End .header-top -->
+        <div class="header-middle sticky-header">
+            <div class="container">
+                <div class="header-left">
+                    <a href="index.html" class="logo">
+                        <img src="~/assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                    </a>
 
-            <nav class="main-nav">
-                <ul class="menu sf-arrows">
-                    <li class="megamenu-container active">
-                        <a href="@Url.Action("Index" , "Home")">Trang chủ</a>
-                    </li>
-                </ul>
-            </nav>
-            <nav class="main-nav">
-                <ul class="menu sf-arrows">
-                    <li class="megamenu-container active">
-                        <a href="@Url.Action("Index" , "Product")">Sản phẩm</a>
-                    </li>
-                </ul>
-            </nav>
-            <nav class="main-nav">
-                <ul class="menu sf-arrows">
-                    <li class="megamenu-container active">
-                        <a href="@Url.Action("Index" , "About")">Về chúng tôi</a>
-                    </li>
-                </ul>
-            </nav>
-            <nav class="main-nav">
-                <ul class="menu sf-arrows">
-                    <li class="megamenu-container active">
-                        <a href="@Url.Action("Index" , "Contact")">Liên lạc với chúng tôi</a>
-                    </li>
-                </ul>
-            </nav>
+                    <nav class="main-nav">
+                        <ul class="menu sf-arrows">
+                            <li class="megamenu-container active">
+                                <a href="@Url.Action("Index" , "Home")">Trang chủ</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="main-nav">
+                        <ul class="menu sf-arrows">
+                            <li class="megamenu-container active">
+                                <a href="@Url.Action("Index" , "Product")">Sản phẩm</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="main-nav">
+                        <ul class="menu sf-arrows">
+                            <li class="megamenu-container active">
+                                <a href="@Url.Action("Index" , "About")">Về chúng tôi</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="main-nav">
+                        <ul class="menu sf-arrows">
+                            <li class="megamenu-container active">
+                                <a href="@Url.Action("Index" , "Contact")">Liên lạc với chúng tôi</a>
+                            </li>
+                        </ul>
+                    </nav>
 
-            @* <nav class="main-nav">
-            <ul class="menu sf-arrows">
-            <li class="megamenu-container active">
-            <a href="index.html">Trang Admin</a>
-            </li>
-            </ul>
-            </nav>*@
-            <div class="dropdown cart-dropdown">
-                <a href="@Url.Action("Index" , "Cart")" class="dropdown-toggle">
-                    <i class="icon-shopping-cart"></i>
-                    <span class="cart-count">2</span>
-                </a>
-            </div><!-- End .cart-dropdown -->
-
-            <div class="dropdown cart-dropdown">
-                <a href="@Url.Action("Index" , "Login")" class="dropdown-toggle">
+                    @* <nav class="main-nav">
+                    <ul class="menu sf-arrows">
+                    <li class="megamenu-container active">
+                    <a href="index.html">Trang Admin</a>
+                    </li>
+                    </ul>
+                    </nav>*@
+                    <div class="dropdown cart-dropdown">
+                        <a href="@Url.Action("Index" , "Cart")" class="dropdown-toggle">
+                            <i class="icon-shopping-cart"></i>
+                            <span class="cart-count">2</span>
+                        </a>
+                    </div><!-- End .cart-dropdown -->
+                    @*<div class="dropdown cart-dropdown">
+                    <a href="@Url.Action("Index" , "Login")" class="dropdown-toggle">
                     <i class="icon-user"></i>
-                </a>
-            </div>
+                    </a>
+                    </div>
 
-            <div class="dropdown cart-dropdown">
-                <a href="@Url.Action("Index" , "Category")" class="dropdown-toggle">
+                    <div class="dropdown cart-dropdown">
+                    <a href="@Url.Action("Index" , "Category")" class="dropdown-toggle">
                     <i class="icon-cog"></i>
-                </a>
-            </div>
-            Xin chào,  @Context.Session.GetString("FullName")
-        </div>
-    </div><!-- End .container -->
-</div><!-- End .header-middle -->
+                    </a>
+                    </div>*@
+                </div>
+            </div><!-- End .container -->
+        </div><!-- End .header-middle -->
+    </header>
+</div><!-- End .container -->

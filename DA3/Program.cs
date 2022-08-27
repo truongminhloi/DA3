@@ -15,13 +15,19 @@ builder.Services.AddTransient<ICommonService, CommonService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<ICartService, CartService>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
+builder.Services.AddTransient<IAccountService, AccountService>();
+
 builder.Services.AddScoped(sp => sp.GetService<IHttpContextAccessor>().HttpContext.Session);
 
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+{
+
+    options.UseLazyLoadingProxies();
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+}
 );
 
 var configuration = new MapperConfiguration(cfg =>

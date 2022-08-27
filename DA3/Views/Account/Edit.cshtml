@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Chỉnh sửa thông tin người dùng";
+    Layout = "_Layout";
+}
+@model AccountModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <main class="main">
+            <div class="page-header text-center" style="background-image: url('../assets/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">Chỉnh sửa thông tin người dùng</h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+                <div class="checkout">
+                    <div class="container">
+                        <form action="@Url.Action("HandelEdit", "Account")">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <h2 class="checkout-title">Thông tin người dùng</h2><!-- End .checkout-title -->
+
+                                    <label>Id</label>
+                                    @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @readonly = "readonly"})
+
+                                    <label>Họ & tên</label>
+                                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control"})
+
+                                    <label>Số điện thoại</label>
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control"})
+
+                                    <label>Ngày sinh</label>
+                                    @Html.TextBoxFor(model => model.DayOfBirth, new { @class = "form-control", type = "date" })
+
+                                    <label>Mật khẩu</label>
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control"})
+
+                                    <label>Địa chỉ</label>
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control"})
+
+                                    <label>Email</label>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control"})
+
+                                    <label>Giới tính</label>
+                                    &nbsp;&nbsp; &nbsp; &nbsp; <span>@Html.RadioButtonFor(m => m.Gender, "Nam") Nam</span>
+                                    &nbsp;&nbsp; <span>@Html.RadioButtonFor(m => m.Gender, "Nam") Nữ</span>
+                                    &nbsp;&nbsp; <span>@Html.RadioButtonFor(m => m.Gender, "Khác") Khác</span>
+
+                                </div><!-- End .col-lg-9 -->
+                            </div><!-- End .row -->
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-outline-primary-2">
+                                    <span>Lưu thông tin</span>
+                                    <i class="icon-long-arrow-right"></i>
+                                </button>
+                            </div><!-- End .form-footer -->
+                        </form>
+                    </div><!-- End .container -->
+                </div><!-- End .checkout -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+    </div><!-- End .modal -->
+</body>
+</html>
