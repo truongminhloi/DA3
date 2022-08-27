@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Chỉnh sửa thông tin cửa hàng";
+    Layout = "_Layout";
+}
+@model StoreModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <main class="main">
+            <div class="page-header text-center" style="background-image: url('../assets/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">Chỉnh sửa thông tin cửa hàng</h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+                <div class="checkout">
+                    <div class="container">
+                        <form action="@Url.Action("HandelSaveChange", "Store")">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <h2 class="checkout-title">Thông tin cửa hàng</h2><!-- End .checkout-title -->
+
+                                    <label>Id</label>
+                                    @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @readonly = "readonly"})
+
+                                    <label>Tên cửa hàng</label>
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control"})
+
+                                    <label>Số điện thoại</label>
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control"})
+
+                                    <label>Email</label>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control"})
+
+                                    <label>Địa chỉ</label>
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control"})
+
+                                    <label>Thời gian hoạt động hằng ngày</label>
+                                    @Html.TextBoxFor(m => m.StartTimeNormal, new { @class = "form-control"})
+                                    @Html.TextBoxFor(m => m.EndTimeNormal, new { @class = "form-control"})
+
+                                    <label>Thời gian hoạt động ngày lễ</label>
+                                    @Html.TextBoxFor(m => m.StartTimeHoliday, new { @class = "form-control"})
+                                    @Html.TextBoxFor(m => m.EndTimeHoliday, new { @class = "form-control"})
+
+                                </div><!-- End .col-lg-9 -->
+                            </div><!-- End .row -->
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-outline-primary-2">
+                                    <span>Lưu thông tin</span>
+                                    <i class="icon-long-arrow-right"></i>
+                                </button>
+                            </div><!-- End .form-footer -->
+                        </form>
+                    </div><!-- End .container -->
+                </div><!-- End .checkout -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+    </div><!-- End .modal -->
+</body>
+</html>

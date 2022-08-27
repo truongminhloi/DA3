@@ -15,6 +15,8 @@ namespace DA3.DAL.Contract
 
         DbSet<Category> Categories { get; set; }
 
+        public DbSet<Store> Store { get; set; }
+
         int SaveChanges();
     }
 }

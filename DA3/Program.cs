@@ -16,6 +16,7 @@ builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<ICartService, CartService>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddTransient<IStoreService, StoreService>();
 
 builder.Services.AddScoped(sp => sp.GetService<IHttpContextAccessor>().HttpContext.Session);
 

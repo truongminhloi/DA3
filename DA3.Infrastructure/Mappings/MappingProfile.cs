@@ -28,6 +28,10 @@ namespace DA3.Infrastructure.Mappings
 
             CreateMap<Category, CategoryModel>();
             CreateMap<CategoryModel, Category>();
+
+
+            CreateMap<Store, StoreModel>();
+            CreateMap<StoreModel, Store>();
         }
     }
 }

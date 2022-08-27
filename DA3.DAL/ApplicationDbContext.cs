@@ -22,6 +22,8 @@ namespace DA3.DAL
 
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<Store> Store { get; set; }
+
         public override int SaveChanges()
         {
             var result = base.SaveChanges();
