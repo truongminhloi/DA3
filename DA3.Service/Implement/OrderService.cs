@@ -23,7 +23,7 @@ namespace DA3.Service.Implement
             _logger = logger;
         }
 
-        public List<OrderModel> AllOrders()
+        public List<OrderModel> GetAllOrders()
         {
             try
             {
@@ -74,7 +74,7 @@ namespace DA3.Service.Implement
             try
             {
                 var orderEntity = _dbContext.Orders.Where(x => x.UserId == userId).FirstOrDefault() ?? new Order();
-                var orderDetails =_dbContext.OrderDetails.Where(x => x.OrderId == orderEntity.Id.ToString()).ToList();
+                var orderDetails = _dbContext.OrderDetails.Where(x => x.OrderId == orderEntity.Id.ToString()).ToList();
                 orderEntity.OrderDetails = orderDetails;
 
                 var order = _mapper.Map<Order, OrderModel>(orderEntity);
@@ -84,6 +84,39 @@ namespace DA3.Service.Implement
             catch (Exception)
             {
 
+                throw;
+            }
+        }
+
+        public OrderModel GetById(string orderId)
+        {
+            try
+            {
+                var orderEntity = _dbContext.Orders.Where(x => x.Id == new Guid(orderId)).FirstOrDefault() ?? new Order();
+                var orderDetails = _dbContext.OrderDetails.Where(x => x.OrderId == orderEntity.Id.ToString()).ToList();
+                orderEntity.OrderDetails = orderDetails;
+
+                var order = _mapper.Map<Order, OrderModel>(orderEntity);
+
+                return order;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public string Update(OrderModel model)
+        {
+            try
+            {
+                var entity = _mapper.Map<OrderModel, Order>(model);
+                _dbContext.Orders.Update(entity);
+                _dbContext.SaveChanges();
+                return entity.Id.ToString();
+            }
+            catch (Exception ex)
+            {
                 throw;
             }
         }

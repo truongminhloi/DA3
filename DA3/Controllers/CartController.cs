@@ -24,16 +24,7 @@ namespace DA3.Controler
         {
             var userId = _session.GetString("UserId");
             var carModel = _cartService.GetcartByUserId(userId);
-            foreach (var item in carModel.CartDetails)
-            {
-                var productModel = _productService.GetProductById(item.ProductId);
-                item.ProductName = productModel.Name;
-                item.PriceProduct = productModel.Price;
-                item.PricePerProdcut = productModel.Price * item.Quantity;
-                item.Url = productModel.Url;
-            }
-            carModel.PricePerAllProducts = (decimal)carModel.CartDetails.Sum(x => (double)x.PricePerProdcut);
-            carModel.TotalPrice = 20000 + carModel.PricePerAllProducts;
+            
             var cartViewModel = new CartViewModel
             {
                 PriceShipFree = 20000,

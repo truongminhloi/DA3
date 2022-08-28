@@ -9,6 +9,8 @@ namespace DA3.Models
 
         public virtual string? UserId { get; set; }
 
+        public virtual string? UserName { get; set; }
+
         public virtual DateTime? DeliveryDate { get; set; }
 
         public virtual string Note { get; set; }
@@ -20,5 +22,7 @@ namespace DA3.Models
         public virtual List<OrderDetailModel> OrderDetailModel { get; set; }
 
         public virtual StatusOrder Status { get; set; }
+
+        public virtual string StatusName { get; set; }
     }
 }

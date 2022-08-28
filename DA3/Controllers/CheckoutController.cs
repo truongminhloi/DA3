@@ -1,4 +1,5 @@
-﻿using DA3.Models;
+﻿using DA3.Common;
+using DA3.Models;
 using DA3.Service.Contract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,11 +22,37 @@ namespace DA3.Controler
             _orderService = orderService;
         }
 
+        public IActionResult Admin()
+        {
+            var allOrders = _orderService.GetAllOrders();
+            var dicStatusName = new Dictionary<int, string>()
+            {
+                {1, "Đang chờ xác nhận"},
+                {2, "Đã xác nhận"},
+                {3, "Đang giao hàng"},
+                {4, "Đã giao hàng"},
+                {5, "Đã từ chối"}
+            };
+
+            foreach (var item in allOrders)
+            {
+                var accountModel = _accountService.GetById(item.UserId);
+                item.UserName = accountModel.FullName;
+                item.StatusName = dicStatusName[(int)item.Status];
+            };
+            var viewModel = new OrderViewModel
+            {
+                OrderModels = allOrders
+            };
+            return View(viewModel);
+        }
+
         public IActionResult Create()
         {
             var userId = _session.GetString("UserId");
             var carModel = _cartService.GetcartByUserId(userId);
             var accountModel = _accountService.GetById(userId);
+
             foreach (var item in carModel.CartDetails)
             {
                 var productModel = _productService.GetProductById(item.ProductId);
@@ -45,18 +72,29 @@ namespace DA3.Controler
 
             return View(model);
         }
+        public IActionResult Edit(string orderId)
+        {
+            var model = _orderService.GetById(orderId);
+            var accountModel = _accountService.GetById(model.UserId);
+            model.UserName = accountModel.FullName;
+            return View(model);
+        }
         public IActionResult HandelCreate(CheckoutViewModel model)
         {
+            var userId = _session.GetString("UserId");
+            var accountModel = _accountService.GetById(userId);
+            var carModel = _cartService.GetcartByUserId(userId);
             var orderModel = new OrderModel
             {
-                UserId = model.AccountModel.Id,
+                UserId = accountModel.Id,
                 DeliveryDate = model.DeliveryDate,
                 Note = model.Note,
                 PayMethod = model.PayMethod,
-                TotalPrice = model.CartModel.TotalPrice
+                TotalPrice = carModel.TotalPrice,
+                Status = StatusOrder.PENDING
             };
             var orderd = _orderService.Create(orderModel);
-            foreach (var item in model.CartModel.CartDetails)
+            foreach (var item in carModel.CartDetails)
             {
                 var orderDetailModel = new OrderDetailModel
                 {
@@ -68,6 +106,11 @@ namespace DA3.Controler
                 _orderService.CreateOrderDetail(orderDetailModel);
             }
             return RedirectToAction("Index", "Home");
+        }
+        public IActionResult HandelEdit(OrderModel model)
+        {
+            _orderService.Update(model);
+            return RedirectToAction("Admin", "Checkout");
         }
     }
 }

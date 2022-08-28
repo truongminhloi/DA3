@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Cập nhật trạng thái đơn hàng";
+    Layout = "_Layout";
+}
+@model OrderModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <main class="main">
+            <div class="page-header text-center" style="background-image: url('../assets/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">Cập nhật trạng thái đơn hàng</h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+                <div class="checkout">
+                    <div class="container">
+                        <form action="@Url.Action("HandelEdit", "Checkout")">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <h2 class="checkout-title">Thông tin đơn hàng</h2><!-- End .checkout-title -->
+
+                                    <label>Id</label>
+                                    @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @readonly = "readonly"})
+                                    @Html.TextBoxFor(m => m.UserId, new { @class = "form-control", @hidden = "hidden"})
+
+                                    <label>Họ & tên</label>
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control",  @readonly = "readonly"})
+
+                                    <label>Ngày giao hàng</label>
+                                    @Html.TextBoxFor(m => m.DeliveryDate, new { @class = "form-control", type = "date"})
+
+                                    <label>Phương thức thanh toán</label>
+                                    @Html.TextBoxFor(model => model.PayMethod, new { @class = "form-control" })
+
+                                    <label>Tổng giá trị</label>
+                                    @Html.TextBoxFor(m => m.TotalPrice, new { @class = "form-control"})
+
+                                    <label>Ghi chú</label>
+                                    @Html.TextBoxFor(m => m.Note, new { @class = "form-control"})
+
+                                    <label>Trạng thái</label>
+                                    @Html.DropDownListFor(x => x.Status, new List<SelectListItem>
+                                    {
+                                    new SelectListItem() {Text = "Đang chờ xác nhận", Value="1"},
+                                    new SelectListItem() {Text = "Đã xác nhận", Value="2"},
+                                    new SelectListItem() {Text = "Đang giao hàng", Value="3"},
+                                    new SelectListItem() {Text = "Đã giao hàng", Value="4"},
+                                    new SelectListItem() {Text = "Đã từ chối", Value="5"},
+                                    }, new { @class = "form-control"})
+
+                                </div><!-- End .col-lg-9 -->
+                            </div><!-- End .row -->
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-outline-primary-2">
+                                    <span>Lưu thông tin</span>
+                                    <i class="icon-long-arrow-right"></i>
+                                </button>
+                            </div><!-- End .form-footer -->
+                        </form>
+                    </div><!-- End .container -->
+                </div><!-- End .checkout -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+    </div><!-- End .modal -->
+</body>
+</html>

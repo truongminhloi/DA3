@@ -11,17 +11,19 @@ namespace DA3.Service.Implement
     public class CartService : ICartService
     {
         private readonly ICommonService _commonService;
+        private readonly IProductService _productService;
         private readonly IMapper _mapper;
         private readonly IApplicationDbContext _dbContext;
         private readonly ILogger _logger;
 
         public CartService(ICommonService commonService, IApplicationDbContext dbContext,
-            IMapper mapper, ILogger<Account> logger)
+            IMapper mapper, ILogger<Account> logger, IProductService productService)
         {
             _commonService = commonService;
             _dbContext = dbContext;
             _mapper = mapper;
             _logger = logger;
+            _productService = productService;
         }
 
         public List<CartModel> AllCarts()
@@ -95,9 +97,18 @@ namespace DA3.Service.Implement
                 var cartDetails =_dbContext.CartDetails.Where(x => x.CartId == cartEntity.Id.ToString()).ToList();
                 cartEntity.CartDetails = cartDetails;
 
-                var cart = _mapper.Map<Cart, CartModel>(cartEntity);
-
-                return cart;
+                var carModel = _mapper.Map<Cart, CartModel>(cartEntity);
+                foreach (var item in carModel.CartDetails)
+                {
+                    var productModel = _productService.GetProductById(item.ProductId);
+                    item.ProductName = productModel.Name;
+                    item.PriceProduct = productModel.Price;
+                    item.PricePerProdcut = productModel.Price * item.Quantity;
+                    item.Url = productModel.Url;
+                }
+                carModel.PricePerAllProducts = (decimal)carModel.CartDetails.Sum(x => (double)x.PricePerProdcut);
+                carModel.TotalPrice = 20000 + carModel.PricePerAllProducts;
+                return carModel;
             }
             catch (Exception)
             {

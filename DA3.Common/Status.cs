@@ -8,9 +8,10 @@
 
     public enum StatusOrder
     {
-        CONFIRMED = 1,
-        Delivery = 2,
-        Delivered = 3,
-        REFUSED = 4,
+        PENDING = 1,
+        CONFIRMED = 2,
+        Delivery = 3,
+        Delivered = 4,
+        REFUSED = 5,
     }
 }
