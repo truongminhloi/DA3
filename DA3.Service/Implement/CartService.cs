@@ -91,7 +91,10 @@ namespace DA3.Service.Implement
         {
             try
             {
-                var cartEntity = _dbContext.Carts.FirstOrDefault(x => x.UserId == userId) ?? new Cart();
+                var cartEntity = _dbContext.Carts.Where(x => x.UserId == userId).FirstOrDefault() ?? new Cart();
+                var cartDetails =_dbContext.CartDetails.Where(x => x.CartId == cartEntity.Id.ToString()).ToList();
+                cartEntity.CartDetails = cartDetails;
+
                 var cart = _mapper.Map<Cart, CartModel>(cartEntity);
 
                 return cart;

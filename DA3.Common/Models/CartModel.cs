@@ -9,11 +9,13 @@ namespace DA3.Models
 
         public string UserId { get; set; }
 
-        public double PricePerAllProducts { get; set; }
+        public decimal PricePerAllProducts { get; set; }
 
         public string Address { get; set; }
 
         public decimal TotalPrice { get; set; }
+
+        public decimal PriceShipping { get; set; }
 
         public ShippingMethod ShippingMethod { get; set; }
 

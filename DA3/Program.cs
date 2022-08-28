@@ -19,6 +19,7 @@ builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IStoreService, StoreService>();
 builder.Services.AddTransient<IFavoriteService, FavoriteService>();
 builder.Services.AddTransient<IFeedbackService, FeedbackService>();
+builder.Services.AddTransient<IOrderService, OrderService>();
 
 builder.Services.AddScoped(sp => sp.GetService<IHttpContextAccessor>().HttpContext.Session);
 
@@ -28,7 +29,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
 
-    options.UseLazyLoadingProxies();
+    options.UseLazyLoadingProxies(true);
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 }
 );

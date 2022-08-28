@@ -12,15 +12,28 @@ namespace DA3.Controler
 
         private readonly ICartService _cartService;
         private readonly IProductService _productService;
-        public CartController(ICartService cartService, IProductService productService)
+        private readonly ISession _session;
+        public CartController(ICartService cartService, IProductService productService, ISession session)
         {
             _cartService = cartService;
             _productService = productService;
+            _session = session;
         }
 
         public IActionResult Index()
         {
-            var carModel = _cartService.GetcartByUserId("DA677218-E289-48D6-B686-782D7553DAC8");
+            var userId = _session.GetString("UserId");
+            var carModel = _cartService.GetcartByUserId(userId);
+            foreach (var item in carModel.CartDetails)
+            {
+                var productModel = _productService.GetProductById(item.ProductId);
+                item.ProductName = productModel.Name;
+                item.PriceProduct = productModel.Price;
+                item.PricePerProdcut = productModel.Price * item.Quantity;
+                item.Url = productModel.Url;
+            }
+            carModel.PricePerAllProducts = (decimal)carModel.CartDetails.Sum(x => (double)x.PricePerProdcut);
+            carModel.TotalPrice = 20000 + carModel.PricePerAllProducts;
             var cartViewModel = new CartViewModel
             {
                 PriceShipFree = 20000,
@@ -33,15 +46,18 @@ namespace DA3.Controler
 
         public IActionResult Create(string productId)
         {
+            var userId = _session.GetString("UserId");
+            var address = _session.GetString("Address");
+
             var productModel = _productService.GetProductById(productId);
-            var carModel = _cartService.GetcartByUserId("1");
+            var carModel = _cartService.GetcartByUserId(address);
             if (GuidHelper.IsGuildNullOrEmpty(new Guid(carModel?.Id)))
             {
                 var cartModel = new CartModel
                 {
-                    UserId = "DA677218-E289-48D6-B686-782D7553DAC8",
+                    UserId = userId,
                     PricePerAllProducts = 1,
-                    Address = "111 AA",
+                    Address = address,
                     TotalPrice = 1000,
                     ShippingMethod = ShippingMethod.Freeshipping,
                     Status = Status.ACTIVE
@@ -52,6 +68,9 @@ namespace DA3.Controler
                 {
                     CartId = cartId,
                     ProductId = productId,
+                    ProductName = productModel.Name,
+                    PriceProduct = productModel.Price,
+                    PricePerProdcut = productModel.Price * 1,
                     Quantity = 1,
                     Status = Status.ACTIVE
                 };

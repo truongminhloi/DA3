@@ -15,11 +15,15 @@ namespace DA3.DAL.Contract
 
         DbSet<Category> Categories { get; set; }
 
-        public DbSet<Store> Store { get; set; }
+        DbSet<Store> Store { get; set; }
 
-        public DbSet<Favorite> Favorites { get; set; }
+        DbSet<Favorite> Favorites { get; set; }
 
-        public DbSet<Feedback> Feedbacks { get; set; }
+        DbSet<Feedback> Feedbacks { get; set; }
+
+        DbSet<Order> Orders { get; set; }
+
+        DbSet<OrderDetails> OrderDetails { get; set; }
 
         int SaveChanges();
     }

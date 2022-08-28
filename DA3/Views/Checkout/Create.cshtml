@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "Thông tin giao hàng";
+    Layout = "_Layout";
+}
+@model CheckoutViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <main class="main">
+            <div class="page-header text-center" style="background-image: url('../assets/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">Thanh toán</h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+                <div class="checkout">
+                    <div class="container">
+                        <form action="@Url.Action("HandelCreate", "Checkout")">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <h2 class="checkout-title">Thông tin giao hàng</h2><!-- End .checkout-title -->
+
+                                    <label>Họ và tên</label>
+                                    @Html.TextBoxFor(m => m.AccountModel.FullName, new { @class = "form-control"})
+
+                                    <label>Địa chỉ</label>
+                                    @Html.TextBoxFor(m => m.CartModel.Address, new { @class = "form-control"})
+
+                                    <label>Email</label>
+                                    @Html.TextBoxFor(m => m.AccountModel.Email, new { @class = "form-control"})
+
+                                    <label>Số điện thoại</label>
+                                    @Html.TextBoxFor(m => m.AccountModel.PhoneNumber, new { @class = "form-control"})
+
+                                    <label>Ngày giao hàng</label>
+                                    @Html.TextBoxFor(m => m.DeliveryDate, new { @class = "form-control", type = "date" })
+
+                                    <label>Ghi chú</label>
+                                    @Html.TextBoxFor(m => m.Note, new { @class = "form-control"})
+
+                                </div><!-- End .col-lg-9 -->
+                                <aside class="col-lg-3">
+                                    <div class="summary">
+                                        <h3 class="summary-title">Chi tiết đặt hàng</h3><!-- End .summary-title -->
+
+                                        <table class="table table-summary">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sản phẩm</th>
+                                                    <th>Giá</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                @foreach (var cartDetail in @Model.CartModel.CartDetails)
+                                                {
+                                                    <tr>
+                                                        <td><a href="#">@cartDetail.ProductName</a></td>
+                                                        <td>@cartDetail.PriceProduct</td>
+                                                    </tr>
+                                                }
+                                                <tr class="summary-subtotal">
+                                                    <td>Thành tiền:</td>
+                                                    <td>@Model.CartModel.PricePerAllProducts</td>
+                                                </tr>
+                                                <!-- End .summary-subtotal -->
+                                                <tr>
+                                                    <td>Giá vận chuyển:</td>
+                                                    <td>@Model.CartModel.PriceShipping</td>
+                                                </tr>
+                                                <tr class="summary-total">
+                                                    <td>Tổng cộng:</td>
+                                                    <td>@Model.CartModel.TotalPrice</td>
+                                                </tr><!-- End .summary-total -->
+                                            </tbody>
+                                        </table><!-- End .table table-summary -->
+
+                                        <div class="accordion-summary" id="accordion-payment">
+                                            <label>Phương thức thanh toán</label>
+                                            <br>&nbsp;&nbsp; <span>@Html.RadioButtonFor(m => m.PayMethod, "Thanh toán khi nhận hàng") Thanh toán khi nhận hàng</span>
+                                            <br>&nbsp;&nbsp; <span>@Html.RadioButtonFor(m => m.PayMethod, "Thanh toán qua ngân hàng") Thanh toán qua ngân hàng</span>
+                                            <br>&nbsp;&nbsp; <span>@Html.RadioButtonFor(m => m.PayMethod, "Thanh toán qua thẻ tín dụng") Thanh toán qua thẻ tín dụng</span>
+                                            <br>&nbsp;&nbsp; <span>@Html.RadioButtonFor(m => m.PayMethod, "Thanh toán qua ví điện tử") Thanh toán qua ví điện tử</span>
+                                        </div><!-- End .accordion -->
+
+                                        <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+                                            <span>Đặt hàng</span>
+                                        </button>
+                                    </div><!-- End .summary -->
+                                </aside><!-- End .col-lg-3 -->
+                            </div><!-- End .row -->
+                        </form>
+                    </div><!-- End .container -->
+                </div><!-- End .checkout -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+    </div><!-- End .modal -->
+</body>
+</html>

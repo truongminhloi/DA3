@@ -29,6 +29,7 @@ namespace DA3.Controler
                 HttpContext.Session.SetString("UserId", account?.Id);
                 HttpContext.Session.SetString("PhoneNumber", account?.PhoneNumber);
                 HttpContext.Session.SetString("FullName", account?.FullName);
+                HttpContext.Session.SetString("Address", account?.Address ?? "268 Lý Thường Kiệt, Phường 14, Quận 10, Thành phố Hồ Chí Minh");
 
                 //var profileData = new UserProfileSessionData
                 //{

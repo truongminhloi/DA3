@@ -38,6 +38,12 @@ namespace DA3.Infrastructure.Mappings
 
             CreateMap<Feedback, FeedbackModel>();
             CreateMap<FeedbackModel, Feedback>();
+
+            CreateMap<Order, OrderModel>();
+            CreateMap<OrderModel, Order>();
+
+            CreateMap<OrderDetails, OrderDetailModel>();
+            CreateMap<OrderDetailModel, OrderDetails>();
         }
     }
 }

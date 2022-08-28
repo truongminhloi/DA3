@@ -13,6 +13,7 @@ namespace DA3.Models
         public int Quantity { get; set; }
 
         public string ProductName { get; set; }
+        public string Url { get; set; }
 
         public decimal PriceProduct { get; set; }
 

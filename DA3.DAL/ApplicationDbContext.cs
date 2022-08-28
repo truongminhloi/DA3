@@ -28,6 +28,10 @@ namespace DA3.DAL
 
         public DbSet<Feedback> Feedbacks { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+
         public override int SaveChanges()
         {
             var result = base.SaveChanges();
