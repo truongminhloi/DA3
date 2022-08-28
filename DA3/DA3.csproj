@@ -39,8 +39,4 @@
     <ProjectReference Include="..\DA3.Service\DA3.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Favorite\" />
-  </ItemGroup>
-
 </Project>

@@ -45,6 +45,7 @@ namespace DA3.Controler
 
         public ActionResult Register(LoginModel loginModel)
         {
+
             var result = _loginService.Register(loginModel);
             return RedirectToAction("Index", "Home");
         }

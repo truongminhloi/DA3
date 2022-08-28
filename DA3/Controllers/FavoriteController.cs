@@ -17,8 +17,11 @@ namespace DA3.Controler
 
         public IActionResult Admin()
         {
-            var model = _favoriteService.GetAllFavorites();
-
+            var favoriteModels = _favoriteService.GetAllFavorites();
+            var model = new FavoriteViewModel
+            {
+                FavoriteModels = favoriteModels
+            };
             return View(model);
         }
 

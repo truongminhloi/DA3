@@ -28,8 +28,8 @@ namespace DA3.Service.Implement
 
         public bool Login(LoginModel loginModel)
         {
-            var pwdHashed = _commonService.GetHashedStringPwd(loginModel.Password);
-            var cheked = _dbContext.Accounts.Select(x => x.PhoneNumber == loginModel.PhoneNumber && x.Password == pwdHashed && x.Status == Status.ACTIVE)?.FirstOrDefault() ?? false;
+            //var pwdHashed = _commonService.GetHashedStringPwd(loginModel.Password);
+            var cheked = _dbContext.Accounts.Select(x => x.PhoneNumber == loginModel.PhoneNumber && x.Password == loginModel.Password && x.Status == Status.ACTIVE)?.FirstOrDefault() ?? false;
 
             return cheked;
         }
@@ -39,8 +39,8 @@ namespace DA3.Service.Implement
             try
             {
                 var accountEntity = _mapper.Map<LoginModel, Account>(loginModel);
-                var pwdHashed = _commonService.GetHashedStringPwd(loginModel.Password);
-                accountEntity.Password = pwdHashed;
+                //var pwdHashed = _commonService.GetHashedStringPwd(loginModel.Password);
+                accountEntity.Password = loginModel.Password;
                 accountEntity.Status = Status.ACTIVE;
 
                 _dbContext.Accounts.AddAsync(accountEntity);

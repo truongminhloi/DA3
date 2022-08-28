@@ -36,12 +36,14 @@ namespace DA3.Controler
 
         public IActionResult HandelCreate(AccountModel model)
         {
+            model.Status = Status.ACTIVE;
             _accountService.Create(model);
             return RedirectToAction("Admin", "Account");
         }
 
         public IActionResult HandelEdit(AccountModel model)
         {
+            model.Status = Status.ACTIVE;
             _accountService.Update(model);
             return RedirectToAction("Admin", "Account");
         }

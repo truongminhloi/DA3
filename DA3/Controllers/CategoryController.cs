@@ -38,13 +38,13 @@ namespace DA3.Controler
         {
             categoryModel.Status = Status.ACTIVE;
             _categoryService.Create(categoryModel);
-            return RedirectToAction("Index", "Category");
+            return RedirectToAction("Admin", "Category");
         }
 
         public IActionResult HandelEdit(CategoryModel categoryModel)
         {
             _categoryService.Update(categoryModel);
-            return RedirectToAction("Index", "Category");
+            return RedirectToAction("Admin", "Category");
         }
 
         public IActionResult Remove(string categoryId)

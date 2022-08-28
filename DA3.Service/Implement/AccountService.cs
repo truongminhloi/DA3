@@ -45,8 +45,8 @@ namespace DA3.Service.Implement
         {
             try
             {
-                var pwdHashed = _commonService.GetHashedStringPwd(model.Password);
-                model.Password = pwdHashed;
+                //var pwdHashed = _commonService.GetHashedStringPwd(model.Password);
+                model.Password = model.Password;
                 model.Status = Status.ACTIVE;
                 var entity = _mapper.Map<AccountModel, Account>(model);
                 _dbContext.Accounts.AddAsync(entity);
