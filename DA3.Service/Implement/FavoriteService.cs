@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using DA3.Common;
 using DA3.DAL.Contract;
 using DA3.DAL.Domain;
 using DA3.Models;
@@ -8,15 +10,15 @@ using Microsoft.Extensions.Logging;
 
 namespace DA3.Service.Implement
 {
-    public class StoreService : IStoreService
+    public class FavoriteService : IFavoriteService
     {
         private readonly ICommonService _commonService;
         private readonly IMapper _mapper;
         private readonly IApplicationDbContext _dbContext;
         private readonly ILogger _logger;
 
-        public StoreService(ICommonService commonService, IApplicationDbContext dbContext,
-            IMapper mapper, ILogger<Account> logger)
+        public FavoriteService(ICommonService commonService, IApplicationDbContext dbContext,
+            IMapper mapper, ILogger<Favorite> logger)
         {
             _commonService = commonService;
             _dbContext = dbContext;
@@ -24,14 +26,14 @@ namespace DA3.Service.Implement
             _logger = logger;
         }
 
-        public StoreModel GetStoreInfo()
+        public List<FavoriteModel> GetAllFavorites()
         {
             try
             {
-                var entity = _dbContext.Store.AsNoTracking().FirstOrDefault() ?? new Store();
-                var model = _mapper.Map<Store, StoreModel>(entity);
+                var entitys = _dbContext.Favorites.AsNoTracking().ToList() ?? new List<Favorite>();
+                var models = _mapper.Map<List<Favorite>, List<FavoriteModel>>(entitys);
 
-                return model;
+                return models;
             }
             catch (Exception)
             {
@@ -39,20 +41,12 @@ namespace DA3.Service.Implement
                 throw;
             }
         }
-        public string SaveChange(StoreModel model)
+        public string SaveChange(FavoriteModel model)
         {
             try
             {
-                var entity = _mapper.Map<StoreModel, Store>(model);
-                var entityDb = _dbContext.Store.AsNoTracking().FirstOrDefault();
-                if (entityDb != null)
-                {
-                    _dbContext.Store.Update(entity);
-                }
-                else
-                {
-                    _dbContext.Store.Add(entity);
-                }
+                var entity = _mapper.Map<FavoriteModel, Favorite>(model);
+                _dbContext.Favorites.Add(entity);
                 _dbContext.SaveChanges();
                 return entity.Id.ToString();
             }

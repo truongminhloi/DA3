@@ -1,4 +1,5 @@
-﻿using DA3.Service.Contract;
+﻿using DA3.Models;
+using DA3.Service.Contract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DA3.Controler
@@ -14,7 +15,12 @@ namespace DA3.Controler
 
         public IActionResult Index()
         {
-            var model = _storeService.GetStoreInfo();
+            var storeModel = _storeService.GetStoreInfo() ?? new StoreModel();
+            var model = new ContactViewModel
+            {
+                StoreModel = storeModel,
+                FeedbackModel = new FeedbackModel()
+            };
             return View(model);
         }
     }

@@ -2,7 +2,7 @@
     ViewData["Title"] = "Về chúng tôi";
     Layout = "_Layout";
 }
-@model StoreModel
+@model ContactViewModel
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,15 +36,15 @@
                                         <ul class="contact-list">
                                             <li>
                                                 <i class="icon-map-marker"></i>
-                                                @Model.Address
+                                                @Model.StoreModel.Address
                                             </li>
                                             <li>
                                                 <i class="icon-phone"></i>
-                                                <a href="tel:#">@Model.PhoneNumber</a>
+                                                <a href="tel:#">@Model.StoreModel.PhoneNumber</a>
                                             </li>
                                             <li>
                                                 <i class="icon-envelope"></i>
-                                                <a href="mailto:#">@Model.Email</a>
+                                                <a href="mailto:#">@Model.StoreModel.Email</a>
                                             </li>
                                         </ul><!-- End .contact-list -->
                                     </div><!-- End .contact-info -->
@@ -57,11 +57,11 @@
                                         <ul class="contact-list">
                                             <li>
                                                 <i class="icon-clock-o"></i>
-                                                <span class="text-dark">Tất cả các ngày trong tuần</span> <br> @Model.StartTimeNormal - @Model.EndTimeNormal
+                                                <span class="text-dark">Tất cả các ngày trong tuần</span> <br> @Model.StoreModel.StartTimeNormal - @Model.StoreModel.EndTimeNormal
                                             </li>
                                             <li>
                                                 <i class="icon-calendar"></i>
-                                                <span class="text-dark">Ngày lễ / tết</span> <br> @Model.StartTimeHoliday - @Model.EndTimeHoliday
+                                                <span class="text-dark">Ngày lễ / tết</span> <br> @Model.StoreModel.StartTimeHoliday - @Model.StoreModel.EndTimeHoliday
                                             </li>
                                         </ul><!-- End .contact-list -->
                                     </div><!-- End .contact-info -->
@@ -72,33 +72,33 @@
                             <h2 class="title mb-1">Có bất kỳ câu hỏi?</h2><!-- End .title mb-2 -->
                             <p class="mb-2">Sử dụng biểu mẫu bên dưới để liên hệ với nhóm chúng tôi</p>
 
-                            <form action="#" class="contact-form mb-3">
+                            <form action="@Url.Action("HandelSaveChange", "Feedback")" class="contact-form mb-3">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label for="cname" class="sr-only">Tên</label>
-                                        <input type="text" class="form-control" id="cname" placeholder="Tên *" required>
+                                        @Html.TextBoxFor(m => m.FeedbackModel.UserName, new { @class = "form-control", @placeholder = "Tên" })
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
                                         <label for="cemail" class="sr-only">Email</label>
-                                        <input type="email" class="form-control" id="cemail" placeholder="Email *" required>
+                                        @Html.TextBoxFor(m => m.FeedbackModel.Email, new { @class = "form-control", @placeholder = "Email"})
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label for="cphone" class="sr-only">Số điện thoại</label>
-                                        <input type="tel" class="form-control" id="cphone" placeholder="Số điện thoại">
+                                        @Html.TextBoxFor(m => m.FeedbackModel.PhoneNumber, new { @class = "form-control", @placeholder = "Số điện thoại"})
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
-                                        <label for="csubject" class="sr-only">Vấn để</label>
-                                        <input type="text" class="form-control" id="csubject" placeholder="Vấn để">
+                                        <label for="csubject" class="sr-only">Vấn đề</label>
+                                        @Html.TextBoxFor(m => m.FeedbackModel.Problem, new { @class = "form-control", @placeholder = "Vấn đề"})
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
                                 <label for="cmessage" class="sr-only">Lời nhắn</label>
-                                <textarea class="form-control" cols="30" rows="4" id="cmessage" required placeholder="Lời nhắn *"></textarea>
+                                @Html.TextAreaFor(m => m.FeedbackModel.Message, new { @class = "form-control", @cols="30", @rows="4", @placeholder = "Lời nhắn"})
 
                                 <button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm">
                                     <span>Gửi</span>

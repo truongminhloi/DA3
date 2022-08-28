@@ -32,6 +32,12 @@ namespace DA3.Infrastructure.Mappings
 
             CreateMap<Store, StoreModel>();
             CreateMap<StoreModel, Store>();
+
+            CreateMap<Favorite, FavoriteModel>();
+            CreateMap<FavoriteModel, Favorite>();
+
+            CreateMap<Feedback, FeedbackModel>();
+            CreateMap<FeedbackModel, Feedback>();
         }
     }
 }

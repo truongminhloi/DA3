@@ -17,6 +17,10 @@ namespace DA3.DAL.Contract
 
         public DbSet<Store> Store { get; set; }
 
+        public DbSet<Favorite> Favorites { get; set; }
+
+        public DbSet<Feedback> Feedbacks { get; set; }
+
         int SaveChanges();
     }
 }

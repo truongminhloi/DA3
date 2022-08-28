@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Quản lý phản hồi";
+    Layout = "_Layout";
+}
+@model FeedbackViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <main class="main">
+            <div class="page-content">
+                <div class="cart">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <table class="table table-cart table-mobile">
+                                    <thead>
+                                        <tr>
+                                            <th><b>Tên người dùng</b></th>
+                                            <th><b>Email</b></th>
+                                            <th><b>Số điện thoại</b></th>
+                                            <th><b>Vấn đề</b></th>
+                                            <th><b>Lời nhắn</b></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in @Model?.feedbacks)
+                                        {
+                                            <tr>
+                                                <td class="price-col">@item?.UserName</td>
+                                                <td class="price-col">@item?.Email</td>
+                                                <td class="price-col">@item?.PhoneNumber</td>
+                                                <td class="price-col">@item?.Problem</td>
+                                                <td class="price-col">@item?.Message</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table><!-- End .table table-wishlist -->
+                            </div><!-- End .col-lg-9 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .container -->
+                </div><!-- End .cart -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+    </div>
+</body>
+</html>
