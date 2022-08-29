@@ -15,7 +15,7 @@ namespace DA3.Controler
 
         public IActionResult Admin()
         {
-            var allCategories = _categoryService.AllCategories();
+            var allCategories = _categoryService.GetAllCategories();
             var viewModel = new CategoryViewModel
             {
                 Categories = allCategories

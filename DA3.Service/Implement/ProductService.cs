@@ -12,26 +12,31 @@ namespace DA3.Service.Implement
     public class ProductService : IProductService
     {
         private readonly ICommonService _commonService;
+        private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
         private readonly IApplicationDbContext _dbContext;
         private readonly ILogger _logger;
 
         public ProductService(ICommonService commonService, IApplicationDbContext dbContext,
-            IMapper mapper, ILogger<Account> logger)
+            IMapper mapper, ILogger<Account> logger, ICategoryService categoryService)
         {
             _commonService = commonService;
             _dbContext = dbContext;
             _mapper = mapper;
             _logger = logger;
+            _categoryService = categoryService;
         }
 
-        public List<ProductModel> AllProducts()
+        public List<ProductModel> GetAllProducts()
         {
             try
             {
                 var allProductEntitys = _dbContext.Products.ToList() ?? new List<Product>();
                 var allProducts = _mapper.Map<List<Product>, List<ProductModel>>(allProductEntitys);
-
+                foreach(var item in allProducts)
+                {
+                    item.CategoryName = _categoryService.GetCategoryById(item.CategoryId)?.Name;
+                }
                 return allProducts;
             }
             catch (Exception)

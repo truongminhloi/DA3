@@ -10,6 +10,8 @@ namespace DA3.Models
 
         public string CategoryId { get; set; }
 
+        public string CategoryName { get; set; }
+
         public string Url { get; set; }
 
         public decimal Price { get; set; }
@@ -19,5 +21,7 @@ namespace DA3.Models
         public string Color { get; set; }
 
         public Status Status { get; set; }
+
+        public List<CategoryModel> CategoryModels { get; set; } = new List<CategoryModel>();
     }
 }

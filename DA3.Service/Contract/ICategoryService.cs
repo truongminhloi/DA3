@@ -4,7 +4,7 @@ namespace DA3.Service.Contract
 {
     public interface ICategoryService
     {
-        List<CategoryModel> AllCategories();
+        List<CategoryModel> GetAllCategories();
 
         string Update(CategoryModel categoryModel);
 

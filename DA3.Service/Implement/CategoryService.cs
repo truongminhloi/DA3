@@ -25,7 +25,7 @@ namespace DA3.Service.Implement
             _logger = logger;
         }
 
-        public List<CategoryModel> AllCategories()
+        public List<CategoryModel> GetAllCategories()
         {
             try
             {
