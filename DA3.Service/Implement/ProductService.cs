@@ -5,6 +5,7 @@ using DA3.DAL.Contract;
 using DA3.DAL.Domain;
 using DA3.Models;
 using DA3.Service.Contract;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace DA3.Service.Implement
@@ -31,9 +32,9 @@ namespace DA3.Service.Implement
         {
             try
             {
-                var allProductEntitys = _dbContext.Products.ToList() ?? new List<Product>();
+                var allProductEntitys = _dbContext.Products.AsNoTracking().Where(x=>x.Status != Status.DELETE).ToList() ?? new List<Product>();
                 var allProducts = _mapper.Map<List<Product>, List<ProductModel>>(allProductEntitys);
-                foreach(var item in allProducts)
+                foreach (var item in allProducts)
                 {
                     item.CategoryName = _categoryService.GetCategoryById(item.CategoryId)?.Name;
                 }
@@ -49,7 +50,7 @@ namespace DA3.Service.Implement
         {
             try
             {
-                var productEntity = _dbContext.Products.FirstOrDefault(x => x.Id == new Guid(productId)) ?? new Product();
+                var productEntity = _dbContext.Products.AsNoTracking().FirstOrDefault(x => x.Id == new Guid(productId)) ?? new Product();
                 var product = _mapper.Map<Product, ProductModel>(productEntity);
 
                 return product;
@@ -57,6 +58,35 @@ namespace DA3.Service.Implement
             catch (Exception)
             {
 
+                throw;
+            }
+        }
+        public string Create(ProductModel model)
+        {
+            try
+            {
+                var entity = _mapper.Map<ProductModel, Product>(model);
+                _dbContext.Products.AddAsync(entity);
+                _dbContext.SaveChanges();
+                return entity.Id.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public string Update(ProductModel model)
+        {
+            try
+            {
+                var entity = _mapper.Map<ProductModel, Product>(model);
+                _dbContext.Products.Update(entity);
+                _dbContext.SaveChanges();
+                return entity.Id.ToString();
+            }
+            catch (Exception ex)
+            {
                 throw;
             }
         }

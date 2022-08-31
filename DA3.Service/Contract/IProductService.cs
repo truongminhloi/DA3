@@ -7,5 +7,10 @@ namespace DA3.Service.Contract
         List<ProductModel> GetAllProducts();
 
         ProductModel GetProductById(string productId);
+
+        string Update(ProductModel model);
+
+        string Create(ProductModel model);
+
     }
 }

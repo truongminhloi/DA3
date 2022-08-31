@@ -18,6 +18,7 @@ namespace DA3.Infrastructure.Mappings
             CreateMap<AccountModel, Account>();
 
             CreateMap<Product, ProductModel>();
+            CreateMap<ProductModel, Product>();
 
             CreateMap<Cart, CartModel>();
             CreateMap<CartDetails, CartDetailModel>();

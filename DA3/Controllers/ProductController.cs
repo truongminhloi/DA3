@@ -1,4 +1,5 @@
-﻿using DA3.Models;
+﻿using DA3.Common;
+using DA3.Models;
 using DA3.Service.Contract;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -41,15 +42,39 @@ namespace DA3.Controler
         public IActionResult Create()
         {
             var categoryModels = _categoryService.GetAllCategories();
-
-            IEnumerable<SelectListItem> items = categoryModels
-                .Select(c => new SelectListItem
-                {
-                    Value = c.Id.ToString(),
-                    Text = c.Name
-                });
-            ViewBag.CategoryID = items;
-            return View();
+            var model = new ProductModel();
+            model.CategoryModels = categoryModels;
+            return View(model);
         }
+
+        public IActionResult HandelCreate(ProductModel model)
+        {
+            model.Status = Status.ACTIVE;
+            _productService.Create(model);
+            return RedirectToAction("Admin", "Product");
+        }
+
+        public IActionResult HandelEdit(ProductModel model)
+        {
+            model.Status = Status.ACTIVE;
+            _productService.Update(model);
+            return RedirectToAction("Admin", "Product");
+        }
+        public IActionResult Edit(string productId)
+        {
+            var model = _productService.GetProductById(productId);
+            var categoryModels = _categoryService.GetAllCategories();
+            model.CategoryModels = categoryModels;
+            return View(model);
+        }
+
+        public IActionResult Remove(string productId)
+        {
+            var model = _productService.GetProductById(productId);
+            model.Status = Status.DELETE;
+            _productService.Update(model);
+            return RedirectToAction("Admin", "Product");
+        }
+
     }
 }

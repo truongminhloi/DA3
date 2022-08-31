@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Thêm sản phẩm";
+    ViewData["Title"] = "Chỉnh sửa sản phẩm";
     Layout = "_Layout";
 }
 @model ProductModel
@@ -13,7 +13,7 @@
         <main class="main">
             <div class="page-header text-center" style="background-image: url('../assets/images/page-header-bg.jpg')">
                 <div class="container">
-                    <h1 class="page-title">Thêm sản phẩm</h1>
+                    <h1 class="page-title">Chỉnh sửa sản phẩm</h1>
                 </div><!-- End .container -->
             </div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav">
@@ -24,10 +24,13 @@
             <div class="page-content">
                 <div class="checkout">
                     <div class="container">
-                        <form action="@Url.Action("HandelCreate", "Product")">
+                        <form action="@Url.Action("HandelEdit", "Product")">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="checkout-title">Thông tin sản phẩm</h2><!-- End .checkout-title -->
+                                    <label>Id</label>
+                                    @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @readonly = "readonly"})
+                                    
                                     <label>Tên sản phẩm</label>
                                     @Html.TextBoxFor(m => m.Name, new { @class = "form-control"})
 
