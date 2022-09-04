@@ -20,11 +20,11 @@ namespace DA3.DAL.Domain
 
         public string? PhoneNumber { get; set; }
 
-        public virtual List<Favorite>? Favorites { get; set; }
+        //public virtual List<Favorite>? Favorites { get; set; }
 
-        public virtual Cart Cart { get; set; }
+        //public virtual Cart Cart { get; set; }
 
-        public virtual Order Order { get; set; }
+        //public virtual Order Order { get; set; }
 
         public Status Status { get; set; }
     }

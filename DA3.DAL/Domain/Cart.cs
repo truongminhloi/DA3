@@ -9,7 +9,7 @@ namespace DA3.DAL.Domain
 
         public virtual string? UserId { get; set; }
 
-        public virtual Account Account { get; set; }
+        //public virtual Account Account { get; set; }
 
         public virtual List<CartDetails> CartDetails { get; set; }
 

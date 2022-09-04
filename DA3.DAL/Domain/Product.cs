@@ -20,11 +20,11 @@ namespace DA3.DAL.Domain
 
         public string? Color { get; set; }
 
-        public virtual List<Favorite>? Favorites { get; set; }
+        //public virtual List<Favorite>? Favorites { get; set; }
 
-        public virtual List<CartDetails>? CartDetails { get; set; }
+        //public virtual List<CartDetails>? CartDetails { get; set; }
 
-        public virtual List<OrderDetails>? OrderDetails { get; set; }
+        //public virtual List<OrderDetails>? OrderDetails { get; set; }
 
         public Status Status { get; set; }
     }

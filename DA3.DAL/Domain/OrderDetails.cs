@@ -10,7 +10,7 @@
 
         public virtual string? ProductId { get; set; }
 
-        public virtual Product Product { get; set; }
+        //public virtual Product Product { get; set; }
 
         public virtual double Price { get; set; }
 

@@ -12,7 +12,7 @@ namespace DA3.DAL.Domain
 
         public virtual string? ProductId { get; set; }
 
-        public virtual Product Product { get; set; }
+        //public virtual Product Product { get; set; }
 
         public virtual int Quantity { get; set; }
 
