@@ -12,7 +12,7 @@ namespace DA3.DAL.Domain
 
         public string? Url { get; set; }
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         public string? Describe { get; set; }
 

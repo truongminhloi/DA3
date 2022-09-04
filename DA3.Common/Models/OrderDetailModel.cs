@@ -11,7 +11,7 @@ namespace DA3.Models
 
         public virtual string? ProductId { get; set; }
 
-        public virtual decimal Price { get; set; }
+        public virtual double Price { get; set; }
 
         public virtual int Quantity { get; set; }
     }

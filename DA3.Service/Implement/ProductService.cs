@@ -40,7 +40,7 @@ namespace DA3.Service.Implement
                 }
                 return allProducts;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;

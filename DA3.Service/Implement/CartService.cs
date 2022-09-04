@@ -106,7 +106,7 @@ namespace DA3.Service.Implement
                     item.PricePerProdcut = productModel.Price * item.Quantity;
                     item.Url = productModel.Url;
                 }
-                carModel.PricePerAllProducts = (decimal)carModel.CartDetails.Sum(x => (double)x.PricePerProdcut);
+                carModel.PricePerAllProducts = (double)carModel.CartDetails.Sum(x => (double)x.PricePerProdcut);
                 carModel.TotalPrice = 20000 + carModel.PricePerAllProducts;
                 return carModel;
             }

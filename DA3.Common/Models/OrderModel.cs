@@ -17,7 +17,7 @@ namespace DA3.Models
 
         public virtual string PayMethod { get; set; }
 
-        public virtual decimal TotalPrice { get; set; }
+        public virtual double TotalPrice { get; set; }
 
         public virtual List<OrderDetailModel> OrderDetailModel { get; set; }
 

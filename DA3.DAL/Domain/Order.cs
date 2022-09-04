@@ -14,7 +14,7 @@ namespace DA3.DAL.Domain
 
         public virtual string PayMethod { get; set; }
 
-        public virtual decimal TotalPrice { get; set; }
+        public virtual double TotalPrice { get; set; }
 
         public virtual List<OrderDetails> OrderDetails { get; set; }
 

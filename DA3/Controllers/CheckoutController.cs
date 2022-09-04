@@ -61,7 +61,7 @@ namespace DA3.Controler
                 item.PricePerProdcut = productModel.Price * item.Quantity;
                 item.Url = productModel.Url;
             }
-            carModel.PricePerAllProducts = (decimal)carModel.CartDetails.Sum(x => (double)x.PricePerProdcut);
+            carModel.PricePerAllProducts = (double)carModel.CartDetails.Sum(x => (double)x.PricePerProdcut);
             carModel.TotalPrice = 20000 + carModel.PricePerAllProducts;
             carModel.PriceShipping = 20000;
             var model = new CheckoutViewModel

@@ -15,9 +15,9 @@ namespace DA3.Models
         public string ProductName { get; set; }
         public string Url { get; set; }
 
-        public decimal PriceProduct { get; set; }
+        public double PriceProduct { get; set; }
 
-        public decimal PricePerProdcut { get; set; }
+        public double PricePerProdcut { get; set; }
 
         public Status Status { get; set; }
     }
