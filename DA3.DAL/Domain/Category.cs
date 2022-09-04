@@ -11,6 +11,8 @@ namespace DA3.DAL.Domain
 
         public string? Describe { get; set; }
 
+        public virtual List<Product> Products { get; set; }
+
         public Status Status { get; set; }
     }
 }

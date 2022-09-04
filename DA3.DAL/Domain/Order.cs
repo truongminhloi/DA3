@@ -8,6 +8,8 @@ namespace DA3.DAL.Domain
 
         public virtual string? UserId { get; set; }
 
+        public virtual Account Account { get; set; }
+
         public virtual DateTime? DeliveryDate { get; set; }
 
         public virtual string? Note { get; set; }

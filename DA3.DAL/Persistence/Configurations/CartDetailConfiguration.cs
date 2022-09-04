@@ -13,7 +13,12 @@ namespace DA3.DAL.Persistence.Configurations
                .WithMany(f => f.CartDetails)
                .HasForeignKey(f => f.CartId);
 
+            //builder.HasOne(t => t.Product)
+            //  .WithMany(f => f.CartDetails)
+            //  .HasForeignKey(f => f.ProductId);
+
             builder.Ignore(e => e.Cart);
+            //builder.Ignore(e => e.Product);
         }
     }
 }
