@@ -10,7 +10,7 @@ namespace DA3.Service.Contract
 
         string CreateCartDetail(CartDetailModel cartModel);
 
-        bool Delete(string Id);
+        string Update(CartModel model);
 
         CartModel GetcartByUserId(string userId);
     }

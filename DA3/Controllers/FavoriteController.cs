@@ -27,10 +27,16 @@ namespace DA3.Controler
 
         public IActionResult HandelSaveChange(string productId)
         {
+            var userId = _session.GetString("UserId");
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var model = new FavoriteModel
             {
                 ProductId = productId,
-                UserId = _session.GetString("UserId")
+                UserId = userId
             };
 
             _favoriteService.SaveChange(model);

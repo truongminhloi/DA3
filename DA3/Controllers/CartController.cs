@@ -23,6 +23,10 @@ namespace DA3.Controler
         public IActionResult Index()
         {
             var userId = _session.GetString("UserId");
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var carModel = _cartService.GetcartByUserId(userId);
             
             var cartViewModel = new CartViewModel
@@ -38,6 +42,10 @@ namespace DA3.Controler
         public IActionResult Create(string productId)
         {
             var userId = _session.GetString("UserId");
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var address = _session.GetString("Address");
 
             var productModel = _productService.GetProductById(productId);

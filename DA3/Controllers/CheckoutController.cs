@@ -47,9 +47,45 @@ namespace DA3.Controler
             return View(viewModel);
         }
 
+
+        public IActionResult User()
+        {
+            var allOrders = _orderService.GetAllOrders();
+            var userId = _session.GetString("UserId");
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            var orderByUser = allOrders.Where(x => x.UserId == userId).ToList();
+            var dicStatusName = new Dictionary<int, string>()
+            {
+                {1, "Đang chờ xác nhận"},
+                {2, "Đã xác nhận"},
+                {3, "Đang giao hàng"},
+                {4, "Đã giao hàng"},
+                {5, "Đã từ chối"}
+            };
+
+            foreach (var item in orderByUser)
+            {
+                var accountModel = _accountService.GetById(item.UserId);
+                item.UserName = accountModel.FullName;
+                item.StatusName = dicStatusName[(int)item.Status];
+            };
+            var viewModel = new OrderViewModel
+            {
+                OrderModels = orderByUser
+            };
+            return View(viewModel);
+        }
+
         public IActionResult Create()
         {
             var userId = _session.GetString("UserId");
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var carModel = _cartService.GetcartByUserId(userId);
             var accountModel = _accountService.GetById(userId);
 
@@ -82,6 +118,10 @@ namespace DA3.Controler
         public IActionResult HandelCreate(CheckoutViewModel model)
         {
             var userId = _session.GetString("UserId");
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var accountModel = _accountService.GetById(userId);
             var carModel = _cartService.GetcartByUserId(userId);
             var orderModel = new OrderModel
@@ -105,6 +145,9 @@ namespace DA3.Controler
                 };
                 _orderService.CreateOrderDetail(orderDetailModel);
             }
+
+            carModel.Status = Status.DELETE;
+            _cartService.Update(carModel);
             return RedirectToAction("Index", "Home");
         }
         public IActionResult HandelEdit(OrderModel model)

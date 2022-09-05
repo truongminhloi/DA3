@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using DA3.Common;
 using DA3.DAL.Contract;
 using DA3.DAL.Domain;
 using DA3.Models;
 using DA3.Service.Contract;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace DA3.Service.Implement
@@ -72,20 +74,18 @@ namespace DA3.Service.Implement
             }
         }
 
-        public bool Delete(string Id)
+        public string Update(CartModel model)
         {
             try
             {
-                var cartEntity = _dbContext.Accounts.ProjectTo<Account>(_mapper.ConfigurationProvider)
-                    .FirstOrDefault(x => x.Id == new Guid(Id));
-                _dbContext.Accounts.Remove(cartEntity);
+                var entity = _mapper.Map<CartModel, Cart>(model);
+                _dbContext.Carts.Update(entity);
                 _dbContext.SaveChanges();
-                return true;
+                return string.Empty;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
-                return false;
+                throw;
             }
         }
 
@@ -93,8 +93,8 @@ namespace DA3.Service.Implement
         {
             try
             {
-                var cartEntity = _dbContext.Carts.Where(x => x.UserId == userId).FirstOrDefault() ?? new Cart();
-                var cartDetails =_dbContext.CartDetails.Where(x => x.CartId == cartEntity.Id.ToString()).ToList();
+                var cartEntity = _dbContext.Carts.AsNoTracking().Where(x => x.UserId == userId && x.Status == Status.ACTIVE).FirstOrDefault() ?? new Cart();
+                var cartDetails = _dbContext.CartDetails.AsNoTracking().Where(x => x.CartId == cartEntity.Id.ToString()).ToList();
                 cartEntity.CartDetails = cartDetails;
 
                 var carModel = _mapper.Map<Cart, CartModel>(cartEntity);

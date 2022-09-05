@@ -20,7 +20,6 @@ namespace DA3.Controler
 
         public IActionResult Index()
         {
-            var userId = _session.GetString("UserId");
             var allProducts = _productService.GetAllProducts();
             var productViewModel = new ProductViewModel
             {

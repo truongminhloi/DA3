@@ -29,7 +29,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
 
-    options.UseLazyLoadingProxies(true);
+    //options.UseLazyLoadingProxies(true);
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 }
 );
