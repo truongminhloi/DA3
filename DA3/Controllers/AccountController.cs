@@ -43,6 +43,7 @@ namespace DA3.Controler
 
         public IActionResult HandelEdit(AccountModel model)
         {
+            model.Status = Status.ACTIVE;
             _accountService.Update(model);
             return RedirectToAction("Admin", "Account");
         }

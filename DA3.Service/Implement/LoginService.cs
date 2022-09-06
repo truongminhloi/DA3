@@ -29,9 +29,12 @@ namespace DA3.Service.Implement
         public bool Login(LoginModel loginModel)
         {
             //var pwdHashed = _commonService.GetHashedStringPwd(loginModel.Password);
-            var cheked = _dbContext.Accounts.Select(x => x.PhoneNumber == loginModel.PhoneNumber && x.Password == loginModel.Password && x.Status == Status.ACTIVE)?.FirstOrDefault() ?? false;
-
-            return cheked;
+            var user = _dbContext.Accounts.FirstOrDefault(x => x.PhoneNumber == loginModel.PhoneNumber && x.Password == loginModel.Password && x.Status == Status.ACTIVE);
+            if (user != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         public bool Register(LoginModel loginModel)

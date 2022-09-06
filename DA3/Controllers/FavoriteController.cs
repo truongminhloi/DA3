@@ -30,7 +30,7 @@ namespace DA3.Controler
             var userId = _session.GetString("UserId");
             if (string.IsNullOrEmpty(userId))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Login");
             }
 
             var model = new FavoriteModel

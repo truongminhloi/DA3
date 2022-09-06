@@ -54,7 +54,7 @@ namespace DA3.Controler
             var userId = _session.GetString("UserId");
             if (string.IsNullOrEmpty(userId))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Login");
             }
             var orderByUser = allOrders.Where(x => x.UserId == userId).ToList();
             var dicStatusName = new Dictionary<int, string>()
@@ -84,7 +84,7 @@ namespace DA3.Controler
             var userId = _session.GetString("UserId");
             if (string.IsNullOrEmpty(userId))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Login");
             }
             var carModel = _cartService.GetcartByUserId(userId);
             var accountModel = _accountService.GetById(userId);
@@ -120,7 +120,7 @@ namespace DA3.Controler
             var userId = _session.GetString("UserId");
             if (string.IsNullOrEmpty(userId))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Login");
             }
             var accountModel = _accountService.GetById(userId);
             var carModel = _cartService.GetcartByUserId(userId);
